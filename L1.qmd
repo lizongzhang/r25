@@ -1,0 +1,25 @@
+---
+title: "第1讲"
+---
+
+# 第1讲 R和R Studio简介
+
+<img src="img/teacher.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[讲义](https://lizongzhang.github.io/stat/rintro.html){target="_blank"}
+
+## 教学视频
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[R Studio 主界面](https://www.bilibili.com/video/BV1NP4y1A7ow/)
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[如何安装R扩展包](https://www.bilibili.com/video/BV12u411D7uP/)
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[RStudio如何导入EXCEL文件](https://www.bilibili.com/video/BV1gi4y1m7pD/) 
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[R Studio中的Project--如何高效管理数据、代码、图形](https://www.bilibili.com/video/BV1ZB4y127oJ/)  
+
+## 拓展资源
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">CRAN Task Views <https://cran.r-project.org/web/views/>
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">Most Downloaded R Packages <https://www.r-pkg.org/>
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">RStudio Cloud <https://rstudio.cloud/>

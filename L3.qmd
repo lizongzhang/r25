@@ -1,0 +1,26 @@
+---
+title: "第3讲"
+---
+
+# 第3讲 R基础图形工具
+
+<img src="img/teacher.png"  style="width: 24px; height: 24px;margin-right: 10px">[讲义](https://lizongzhang.github.io/stat/base_graph_tool.html){target="_blank"}
+
+## 教学视频
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[R绘制直方图：hist函数的运用](https://www.bilibili.com/video/BV1iB4y1k7Ac/){target="_blank"} 
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[R 直方图中如何自定义组数和组距？](https://www.bilibili.com/video/BV19X4y1D7Mm/){target="_blank"} 
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[箱线图 boxplot函数](https://www.bilibili.com/video/BV1MG4y1i7Yd/){target="_blank"} 
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[R 条形图 barplot函数](https://www.bilibili.com/video/BV1mV4y177EK/){target="_blank"}  
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[散点图的绘制——R中的plot函数](https://www.bilibili.com/video/){target="_blank"} 
+
+## 习题讲评
+
+<img src="img/teacher.png"  style="width: 24px; height: 24px;margin-right: 10px">[第3讲习题答案代码](https://lizongzhang.github.io/stat/base_graph_tool.html){target="_blank"}
+
+## 拓展资源
+

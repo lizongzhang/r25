@@ -1,0 +1,29 @@
+---
+title: "第9讲"
+---
+
+<h1 style="color: #044875;"> 第9讲 分类数据 </h1>
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">[第9讲作业](https://lizongzhang.github.io/stat/R9ex.html)
+
+<h3 style="color: #044875;"> 教学视频 </h3>
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[R拟合优度检验](https://www.bilibili.com/video/BV1iY4y147Ds/)
+        
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[R独立性检验](https://www.bilibili.com/video/BV1Mu41167gx/)
+        
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[R列联表的行百分比/列百分比的计算](https://www.bilibili.com/video/BV1ia4y137kB/)
+        
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[R列联表的可视化呈——堆栈百分比条形图](https://www.bilibili.com/video/BV1wk4y1L729/)
+        
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[R列联表的可视化呈现——马赛克图](https://www.bilibili.com/video/BV18h41157Fc/) 
+
+
+<h3 style="color: #044875;"> 习题讲评 </h3>
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">[第9讲作业答案代码](https://lizongzhang.github.io/stat/solution9.html)
+
+
+<h3 style="color: #044875;"> 拓展资源 </h3>
+
+在线词云图工具 <https://www.wordclouds.com/>

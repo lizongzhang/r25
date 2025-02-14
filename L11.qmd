@@ -1,0 +1,25 @@
+---
+title: "第11讲"
+---
+
+<h1 style="color: #044875;"> 第11讲 相关与回归分析 </h1>
+
+<img src="img/link.png"  style="width: 24px; height: 24px;margin-right: 10px">[第11讲作业](https://lizongzhang.github.io/stat/R11ex.html)
+
+<h3 style="color: #044875;"> 教学视频 </h3>
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[相关系数的计算及可视化](https://www.bilibili.com/video/BV1or4y1s7DN/)
+  
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[一元回归——lm()函数](https://www.bilibili.com/video/BV1zg411o7Kp)
+  
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[如何在散点图中添加估计的回归方程的表达式？](https://www.bilibili.com/video/BV1u841147DK)
+        
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[R中如何进行分组回归？nlme::lmList函数的运用](https://www.bilibili.com/video/BV1MP411n7Gd/)
+
+<h3 style="color: #044875;"> 习题讲评 </h3>
+
+<img src="img/link.png"  style="width: 24px; height: 24px;margin-right: 10px">[第11讲习题答案代码](https://lizongzhang.github.io/stat/solution11.html)
+
+<h3 style="color: #044875;"> 拓展资源 </h3>
+
+在线词云图工具 <https://www.wordclouds.com/>

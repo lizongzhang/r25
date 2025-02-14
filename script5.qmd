@@ -1,0 +1,899 @@
+---
+title: "第5讲 tidyverse"
+author: "Li Zongzhang"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-float:
+      collapsed: true
+      smooth-scroll: true
+      toc-position: right
+      include-css: style.css
+    number-sections: true
+    highlight-style: haddock
+    code-block-border-left: "#31BAE9"
+    code-block-bg: true
+    code-line-numbers: true
+---
+
+"Tidy datasets are all alike, but every messy dataset is messy in its own way." --- Hadley Wickham
+
+Ref: [Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). R for data science.](https://r4ds.hadley.nz/)
+
+**需要安装和加载的包**
+
+```{r}
+#| echo: true
+#| message: false
+
+# install.packages("nycflights13")
+# install.packages("tidyverse")
+
+library(nycflights13)
+library(tidyverse)
+```
+
+# 什么是tidy data？
+
+对比table1, table2, table3
+
+```{r}
+table1
+
+table2
+
+table3
+```
+
+**tidydata的特征**
+
+-   每个变量是一列；每列是一个变量。
+
+-   每个观察结果是一行；每行是一个观察结果。
+
+-   每个值是一个单元格；每个单元格是一个单一值。
+
+![](https://r4ds.hadley.nz/images/tidy-1.png) 为什么要确保你的数据整洁？
+
+-   如果你有一个一致的数据结构，学习与之配合的工具就更容易，因为它们具有底层的统一性。
+
+-   将变量放在列中, 发挥R的向量化特性，大多数内置的R函数都是与向量一起工作的。
+
+# 如何查看数据？
+
+View()/glimpse()/head()/tail()
+
+```{r}
+library(nycflights13)
+data(flights)
+flights #查看数据
+
+View(flights) #在View卡片下查看数据
+
+glimpse(flights) #查看数据结构
+
+head(flights) #查看前6行
+
+tail(flights) #查看后6行
+```
+
+-   int 整数 integer
+
+-   dbl 双精度浮点数 bouble (实数)
+
+-   chr 字符串
+
+-   dttm 日期时间
+
+# dplyr函数
+
+## dplyr函数的共性
+
+-   第1项参数是data frame.
+
+-   第2项参数描述动作。
+
+-   输出结果是一个新的data frame.
+
+## dplyr函数的分类
+
+-   行的管理 Rows:
+    -   `filter()` chooses rows based on column values.
+    -   `arrange()` changes the order of the rows.
+    -   `distinct()` removes duplicate rows.
+    -   `na.omit()` removes rows with missing values.
+    -   `drop.na()` removes rows with missing values.
+    -   `slice()` chooses rows based on location.
+-   列的管理 Columns:
+    -   `mutate()` changes the values of columns and creates new columns.
+    -   `select()` changes whether or not a column is included.
+    -   `rename()` changes the name of columns.
+    -   `if_else()` changes the values of columns based on a condition.
+    -   `case_when()` changes the values of columns based on multiple conditions.
+    -   `recode()` changes the values of columns based on a condition.
+    -   `relocate()` changes the order of the columns.
+-   行组的管理Groups of rows:
+    -   `summarise()` collapses a group into a single row.
+    -   `count()`
+    -   `top_n()`
+
+## Rows
+
+### 保留filter()
+
+```{r}
+flights %>%  
+  filter(dep_delay > 120) #保留dep_delay大于120的行
+```
+
+-   \>=（大于或等于）
+
+-   \<（小于）
+
+-   \<=（小于或等于）
+
+-   ==（等于）
+
+-   !=（不等于）
+
+-   & 条件组合，同时成立
+
+-   \| "或"，至少有一个条件成立
+
+```{r}
+flights %>% 
+  filter(month == 1 & day == 1) #筛选出1月1日的航班
+
+flights %>%
+  filter(month == 1 | month == 2) #筛选出1月或2月的航班
+
+flights %>%
+  filter(month %in% c(1, 2)) #筛选出1月或2月的航班
+
+```
+
+**注意：当你运行 filter() 时，dplyr 执行过滤操作，创建一个新的数据框，然后打印它。它不会修改现有的 flights 数据集，因为 dplyr 函数永远不会修改它们的输入。要保存结果，你需要使用赋值操作符，\<-**
+
+```{r}
+#筛选出1月1日的航班,并保存到flights_jan1
+flights_jan1 <- flights %>% 
+  filter(month == 1 & day == 1) 
+```
+
+**常见错误**
+
+```{r}
+# flights %>% 
+#   filter(month = 1) #错误，应该用==而不是=
+
+```
+
+```{r}
+# flights %>%
+#    filter(month == 1 | 2)  #错误，应该用month == 1 | month == 2
+
+```
+
+### 排序arange()
+
+```{r}
+flights %>% 
+  arrange(year, month, day, dep_time) #按照year, month, day, dep_time排序
+```
+
+```{r}
+flights %>% 
+  arrange(desc(dep_delay)) #desc()按照dep_time降序排序
+
+```
+
+### 删除有缺失值的行na.omit()/drop_na()
+
+```{r}
+flights %>% 
+  na.omit() #删除含有NA的行
+
+flights %>%
+  drop_na(dep_time, arr_time) #删除dep_time, arr_time为NA的行
+ 
+```
+
+### 去重distinct()
+
+```{r}
+flights %>% 
+  distinct() #移除所有列都相同的行
+```
+
+```{r}
+flights %>% 
+  distinct(year, month, day) #提取year, month, day 的唯一组合
+
+flights %>% 
+  distinct(origin, dest) #提取year, month, day 的唯一组合
+
+flights %>% 
+  distinct(origin, dest,    #找到year, month, day 的唯一组合
+           .keep_all = TRUE) #保留所有的列。 .keep_all默认为FALSE，不保留其余的列
+
+```
+
+### 缺失值is.na()
+
+```{r}
+flights %>% 
+  filter(is.na(dep_time)) #保留dep_time为NA的行
+
+flights %>% 
+  filter(!is.na(dep_time)) #保留dep_time为NA的行
+
+```
+
+### 小练习
+
+第1题: 将满足下列条件的航班筛选出来，保存为一个新的数据框christmas_jfk, 该数据框中一共有多少个航班？
+
+1.  航班出发日期为2013年12月24日.
+
+2.  出发地(origin)机场是"JFK".
+
+John F. Kennedy International Airport, JFK
+
+LaGuardia Airport, LGA
+
+Newark Liberty International Airport, EWR
+
+3.  航空公司(carrier)是"AA",或者"UA", 或者"US".
+
+AA, American Airlines.
+
+UA, United Airlines
+
+US, US Airways
+
+4.  将到达延误时长(arr_delay)中有缺失值的行剔除
+
+第2题: 对数据框christmas_jfk, 按照到达延误时长(arr_delay)降序排列航班
+
+第3题: 绘制数据框christmas_jfk中出发时间(dep_time)和到达延误时长(arr_delay)的散点图，散点的颜色用航空公司(carrier)来映射, 散点的大小用飞行距离来映射。
+
+<details>
+
+<summary>code</summary>
+
+```{r}
+christmas_jfk <- flights %>% 
+  filter(year == 2013 & month == 12 & day == 24 & origin == "JFK" ) %>%
+  filter(carrier %in% c("AA", "UA", "US")) %>% 
+  drop_na(arr_delay) %>% 
+  arrange(desc(arr_delay))
+
+christmas_jfk %>% print(width = Inf)
+
+nrow(christmas_jfk)
+
+christmas_jfk %>% 
+  ggplot(aes(dep_time, arr_delay, col = carrier, size = distance)) + 
+  geom_point(alpha = 0.5)
+
+flights %>%
+  filter(year == 2013, month == 12, day == 24, 
+         origin == "JFK", carrier %in% c("AA", "UA", "US")) %>%
+  drop_na(arr_delay) %>% 
+  arrange(desc(arr_delay)) %>% 
+  ggplot(aes(dep_time, arr_delay, col = carrier, size = distance)) + 
+  geom_point(alpha = 0.5)
+  
+```
+
+## Columns
+
+### 追加变量mutate()
+
+```{r}
+flights %>% 
+  mutate(
+    gain = arr_delay - dep_delay, 
+    #gain = 到达延时 -出发延时。gain为正值,表示航班在飞行过程中增加了延迟，航班延迟增加。gain的负值，表示航班在飞行过程中减少了延迟，航班延迟减少，或者航班提前到达。
+    speed = distance / air_time * 60, #计算飞行速度,
+    .after = arr_delay  #将gain和speed放在arr_delay列后，默认是放在最后两列
+)
+
+```
+
+```{r}
+flights %>% 
+  mutate(
+    gain = arr_delay - dep_delay,
+    speed = distance / air_time * 60,
+    .before = 1) #将gain和speed放在第1列,第2列
+
+flights %>% 
+  mutate(
+    gain = arr_delay - dep_delay,
+    speed = distance / air_time * 60,
+    .after = day) #将gain和speed放在day列后
+```
+
+注意：
+
+当运行mutate() 时，追加变量，console中显示了追加的结果，但不会修改现有的数据框。
+
+要保存这个新的数据框，需要将其赋值\<-。
+
+### 选择变量select()
+
+```{r}
+flights %>% 
+  select(year, month, day) #选择year, month, day列
+
+flights %>% 
+  select(year:day) #选择year到day列
+
+flights %>%
+  select(year:day, ends_with("delay")) #选择year到day列和以delay结尾的列
+
+flights %>%
+  select(!year:day) #选择除year到day列之外的列
+
+flights %>%
+  select(where(is.character)) #选择类型是字符串的列
+
+```
+
+There are a number of helper functions you can use within select():
+
+-   starts_with("abc"): matches names that begin with "abc".
+
+-   ends_with("xyz"): matches names that end with "xyz".
+
+-   contains("ijk"): matches names that contain "ijk".
+
+-   num_range("x", 1:3): matches x1, x2 and x3.
+
+### 重命名变量rename()
+
+```{r}
+flights %>% 
+  rename(tail_num = tailnum) # 新名称 = 旧名称
+
+
+# 保存重命名后的数据框
+mydata <- flights %>% 
+  rename(tail_num = tailnum) # 新名称 = 旧名称
+
+```
+
+### 二值转换if_else()
+
+```{r}
+flights %>%
+  mutate(season = if_else(month %in% c(6, 7, 8), "summer", "non-summer")) %>%
+  relocate(season, .before = month) #将season列放在month列前
+
+```
+
+### 多值转换case_when()
+
+```{r}
+flights  %>%  
+  mutate(
+    status = case_when(
+      is.na(arr_delay)      ~ "cancelled", #如果arr_delay为NA,则status为cancelled
+      arr_delay < -30       ~ "very early", #如果航班提前超过30分钟到达，status为"very early"
+      arr_delay < -15       ~ "early", #如果航班提前15到30分钟到达，status为"early"
+      abs(arr_delay) <= 15  ~ "on time", #如果航班提前或延迟在15分钟以内，status为"on time"
+      arr_delay < 60        ~ "late", #如果航班延迟小于60分钟，status为"late"
+      arr_delay < Inf       ~ "very late", #如果航班延迟大于等于60分钟，status为"late"
+    ),
+    .after = arr_delay) #将status列放在arr_delay列后
+```
+
+### 重新编码recode()
+
+```{r}
+# recode()函数 旧值 = 新值
+# case_when 适合于复杂条件的转换
+
+flights %>%
+  mutate(quarter = recode(month,
+                         "1" = "Winter", "2" = "Winter", "12" = "Winter", 
+                         "3" = "Spring", "4" = "Spring", "5" = "Spring",
+                         "6" = "Summer", "7" = "Summer", "8" = "Summer",
+                         "9" = "Fall", "10" = "Fall", "11" = "Fall"),
+         .before = month)
+
+# 用case_when()更简洁
+flights %>%
+  mutate(quarter = case_when(
+    month %in% c(12, 1, 2) ~ "Winter",
+    month %in% c(3, 4, 5) ~ "Spring",
+    month %in% c(6, 7, 8) ~ "Summer",
+    month %in% c(9, 10, 11) ~ "Fall"
+  ), 
+  .before = month)
+
+flights %>%
+  mutate(company = recode(carrier,
+                          "9E" = "Endeavor Air",
+                          "AA" = "American Airlines",
+                          "AS" = "Alaska Airlines",
+                          "B6" = "JetBlue Airways",
+                          "DL" = "Delta Air Lines",
+                          "EV" = "ExpressJet Airlines",
+                          "F9" = "Frontier Airlines",
+                          "FL" = "AirTran Airways",
+                          "HA" = "Hawaiian Airlines",
+                          "MQ" = "Envoy Air",
+                          "OO" = "SkyWest Airlines",
+                          "UA" = "United Airlines",
+                          "US" = "US Airways",
+                          "VX" = "Virgin America",
+                          "WN" = "Southwest Airlines",
+                          "YV" = "Mesa Airlines"),
+         .after = carrier)
+```
+
+### 前置变量relocate()
+
+```{r}
+flights %>% 
+  relocate(time_hour, air_time) #将time_hour, air_time放到最前面
+
+```
+
+### 小练习
+
+第1题：将出发地(origin)是"JFK"机场的航班筛选出来, 创建数据框jfk_flights, 在该数据框中追加如下变量：
+
+1. 追加新变量distance_group。根据distance(单位：英里)的数值，将航班分为短途、中途和长途三类。 distance_group值为"short", "medium", "long"。distance_group与distance的对应关系如下：
+
+- 短途飞行（Short-haul flight）：飞行距离少于500英里的航班。
+
+- 中途飞行（Medium-haul flight）：飞行距离在500到1,550英里之间的航班。
+
+- 长途飞行（Long-haul flight）：飞行距离超过1,550英里的航班
+
+2. 追加新变量status。若arr_delay的值为缺失值，则status等于cancelled，若arr_delay的值不是缺失值，则status等于normal。
+
+3. 追加新变量month_name，将month的值转换为月份的英文名称，例如1转换为January，2转换为February，以此类推。
+
+第2题：绘制出第1题中得到的数据框jfk_flights中航班数量的条形图，横坐标为月份的英文名称，纵坐标为航班数量。
+
+第3题：绘制出第1题中得到的数据框jfk_flights中每个月份的取消/正常航班数量的条形图，横坐标为月份的英文名称，纵坐标为航班数量。
+
+<details>
+
+<summary>code</summary>
+
+```{r}
+# 筛选出发地为"JFK"的航班
+jfk_flights <- flights %>% 
+  filter(origin == "JFK")
+
+# 追加新变量distance_group, status和month_name
+jfk_flights <- jfk_flights %>%
+  mutate(
+    distance_group = case_when(
+      distance < 500 ~ "short",
+      distance >= 500 & distance <= 1550 ~ "medium",
+      distance > 1550 ~ "long"
+    ),
+    status = if_else(is.na(arr_delay), "cancelled", "normal"),
+    month_name = month.abb[month],  # 使用内置的月份缩写向量month.abb
+    .after = day  # 将新变量放在day列后
+  )
+
+jfk_flights
+
+# 将month_name转换为有序因子，确保月份按自然顺序排序
+jfk_flights$month_name <- factor(jfk_flights$month_name, 
+                                    levels = month.abb, 
+                                    ordered = TRUE)
+
+# 绘制柱状图
+ggplot(jfk_flights, aes(x = month_name, fill = month_name)) +
+  geom_bar() +
+  xlab("Month") +
+  ylab("Number of Flights") +
+  ggtitle("Number of Flights from JFK by Month") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) # 优化x轴标签显示
+
+# 绘制帕累托图
+ggplot(jfk_flights, aes(x = fct_infreq(month_name), fill = month_name)) +
+  geom_bar() +
+  xlab("Month") +
+  ylab("Number of Flights") +
+  ggtitle("Number of Flights from JFK by Month") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) # 优化x轴标签显示
+
+# 绘制柱状图
+ggplot(jfk_flights, aes(x = month_name, fill = month_name)) +
+  geom_bar() +
+  facet_wrap( ~ status, scales = "free_y") +  # 按status分面，y轴自由缩放
+  xlab("Month") +
+  ylab("Number of Flights") +
+  ggtitle("Number of Flights from JFK by Month") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) # 优化x轴标签显示
+
+
+```
+
+
+
+## The pipe
+
+合并追加变量的代码,并保存到flights_new数据框中
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+#追加gain, status, quarter和company
+
+flights_new <- flights %>% 
+  mutate(
+    gain = arr_delay - dep_delay,
+    speed = distance / air_time * 60,
+    .after = arr_delay) %>%
+    mutate(
+    status = case_when(
+      is.na(arr_delay)      ~ "cancelled", 
+      arr_delay < -30       ~ "very early", 
+      arr_delay < -15       ~ "early", 
+      abs(arr_delay) <= 15  ~ "on time", 
+      arr_delay < 60        ~ "late", 
+      arr_delay < Inf       ~ "very late", 
+    ),
+    .after = arr_delay) %>% 
+  mutate(quarter = case_when(
+    month %in% c(12, 1, 2) ~ "Winter",
+    month %in% c(3, 4, 5) ~ "Spring",
+    month %in% c(6, 7, 8) ~ "Summer",
+    month %in% c(9, 10, 11) ~ "Fall"
+  ), 
+  .before = month) %>%
+  mutate(company = recode(carrier,
+                          "9E" = "Endeavor Air",
+                          "AA" = "American Airlines",
+                          "AS" = "Alaska Airlines",
+                          "B6" = "JetBlue Airways",
+                          "DL" = "Delta Air Lines",
+                          "EV" = "ExpressJet Airlines",
+                          "F9" = "Frontier Airlines",
+                          "FL" = "AirTran Airways",
+                          "HA" = "Hawaiian Airlines",
+                          "MQ" = "Envoy Air",
+                          "OO" = "SkyWest Airlines",
+                          "UA" = "United Airlines",
+                          "US" = "US Airways",
+                          "VX" = "Virgin America",
+                          "WN" = "Southwest Airlines",
+                          "YV" = "Mesa Airlines"),
+         .after = carrier) 
+
+flights_new 
+```
+
+## Groups
+
+### group_by()
+
+```{r}
+flights %>% 
+  group_by(month) #按照month分组
+```
+
+group_by() 不会改变数据，但输出显示它是按"月份"分组的。这意味着随后的操作现在将"按月"进行。group_by() 为数据框添加了这个分组特征，这改变了随后应用于数据的动作。
+
+### summarize()
+
+```{r}
+flights %>% 
+  group_by(month) %>% 
+  summarise(mean_delay = mean(dep_delay)) #按照month分组，计算dep_delay的均值
+```
+
+NA: missing value
+
+当向量中有NA，mean()函数默认返回NA，如果想忽略NA值，可以使用na.rm = TRUE
+
+```{r}
+flights %>% 
+  group_by(month) %>% 
+  summarise(mean_delay = mean(dep_delay, na.rm = TRUE), #na.rm = TRUE表示忽略NA值
+            n = n()
+  ) #按照month分组，计算dep_delay的均值和n
+```
+
+```{r}
+# 统计每天的航班数量
+flights %>% 
+  group_by(year, month, day) %>% 
+  summarise(n = n()) #生成的数据框是一个有分组结构的数据框
+
+flights %>% 
+  group_by(year, month, day) %>% 
+  summarise(n = n(),           #按照year, month, day分组，计算n
+            .groups = "drop"   #生成的数据框是没有分组结构
+            ) 
+
+```
+
+### .by
+
+```{r}
+flights %>% 
+  summarize(mean_delay = mean(dep_delay, na.rm = TRUE) %>% round(3),
+            n = n(),
+            .by = month 
+  ) %>% #按月份分组，计算dep_delay的均值和n
+  arrange(desc(mean_delay)) #按mean_delay降序
+
+flights %>% 
+  summarize(mean_delay = mean(dep_delay, na.rm = TRUE) %>% round(3),
+            n = n(),
+            .by = c(origin)  #按origin分组，计算dep_delay的均值和n
+            ) %>% 
+  arrange(desc(mean_delay)) #按mean_delay降序
+
+flights %>% 
+  summarize(mean_delay = mean(dep_delay, na.rm = TRUE)%>% round(3),
+            n = n(),
+            .by = c(dest) #按dest分组，计算dep_delay的均值和n
+            ) %>%
+  arrange(desc(mean_delay)) #按mean_delay降序
+
+flights %>% 
+  summarize(mean_delay = mean(dep_delay, na.rm = TRUE)%>% round(3),
+            n = n(),
+            .by = c(origin, dest) #按origin, dest分组，计算dep_delay的均值和n
+            ) %>%
+  arrange(desc(mean_delay)) #按mean_delay降序
+
+```
+
+
+### 小练习
+
+第1题：如果你想尽可能避免延误，你应该选择哪个时间段起飞的航班？
+
+第2题：哪三家航空公司(carrier)的平均延误时间(arr_delay)最长？
+
+第3题：哪个月份的平均延误时间(arr_delay)最长？
+
+第4题：将延误时间(arr_delay)超过15分钟的定义为延误航班。 计算各个月份的延误航班的比例，并按比例降序排列。
+
+第5题：将延误时间(arr_delay)超过15分钟的定义为延误航班。 计算各个航空公司(carrier)的延误航班的比例，并按各航空公司航班数量降序排列。
+
+第6题：从JFK机场出发(origin)的航班中，航班数量最多的5家航空公司是哪些？并统计出其航班数量？
+
+<details>
+
+<summary>code</summary>
+
+```{r}
+# 第1题
+flights %>%
+  group_by(hour) %>%
+  summarise(avg_arr_delay = mean(arr_delay, na.rm = TRUE)) %>%
+  arrange(avg_arr_delay) %>% 
+  print(n = Inf)
+
+# 第2题
+flights %>%
+  group_by(carrier) %>%
+  summarise(avg_arr_delay = mean(arr_delay, na.rm = TRUE)) %>%
+  arrange(desc(avg_arr_delay)) %>%
+  top_n(3, avg_arr_delay)
+
+# 第3题
+flights %>%
+  group_by(month) %>%
+  summarise(avg_arr_delay = mean(arr_delay, na.rm = TRUE)) %>%
+  arrange(desc(avg_arr_delay)) 
+
+# 第4题
+flights %>%
+  mutate(is_delayed = arr_delay > 15) %>%
+  group_by(month) %>%
+  summarise(
+    total_flights = n(),
+    delayed_flights = sum(is_delayed, na.rm = TRUE),
+    delay_proportion = delayed_flights / total_flights
+  ) %>%
+  arrange(desc(delay_proportion)) 
+
+# 第5题
+flights %>%
+  mutate(is_delayed = arr_delay > 15) %>%
+  group_by(carrier) %>%
+  summarise(
+    total_flights = n(),
+    delayed_flights = sum(is_delayed, na.rm = TRUE),
+    delay_proportion = delayed_flights / total_flights
+  ) %>%
+  arrange(desc(total_flights)) 
+
+# 第6题
+flights %>%
+  filter(origin == "JFK") %>%
+  group_by(carrier) %>%
+  summarise(number_of_flights = n()) %>%
+  arrange(desc(number_of_flights)) %>%
+  top_n(5, number_of_flights) 
+
+```
+
+
+# forcats函数
+
+```{r}
+library(tidyverse)
+data(mpg)
+
+count(mpg, drv)
+
+mpg %>% 
+  ggplot(aes(drv, fill = drv)) +
+  geom_bar()
+```
+
+## fct_recode()
+
+```{r}
+mpg <- mpg %>%
+  mutate(drv = fct_recode(drv,
+                          "front wheels" = "f",
+                          "rear wheels" = "r",
+                          "four wheels" = "4"))
+
+mpg %>% 
+  ggplot(aes(drv, fill = drv)) +
+  geom_bar()
+
+```
+
+## fct_infreq() 按频数降序
+
+
+```{r}
+mpg %>% 
+  ggplot(aes(fct_infreq(drv), fill = drv)) +
+  geom_bar()
+```
+
+
+## fct_rev() 
+
+
+```{r}
+mpg %>% 
+  ggplot(aes(fct_rev(fct_infreq(drv)), fill = drv)) +
+  geom_bar()
+```
+
+## fct_reorder()
+
+
+### 按中位数升序排列箱线图
+
+```{r}
+mpg %>%
+  ggplot(aes(cty, fct_reorder(class, cty),
+             fill = class)) +
+  geom_boxplot()
+```
+
+### 按中位数降序排列箱线图
+
+```{r}
+mpg %>%
+  ggplot(aes(cty, fct_reorder(class, -cty),
+             fill = class)) +
+  geom_boxplot()
+```
+
+
+### 按平均数排列箱线图
+
+
+```{r}
+mpg %>% 
+  ggplot(aes(fct_reorder(class, cty, .fun = mean), 
+             cty, fill = class)) +
+  geom_boxplot() +
+  labs(fill = "Class", x = "Class")
+```
+### 柱形的排列
+
+
+```{r}
+mpg %>% 
+  group_by(drv) %>%
+  summarise(mean_cty = mean(cty)) %>% 
+  mutate(drv = fct_reorder(drv, mean_cty)) %>%
+  ggplot(aes(drv, mean_cty, fill = drv)) +
+  geom_col()
+
+mpg %>% 
+  group_by(drv) %>%
+  summarise(mean_cty = mean(cty)) %>% 
+  mutate(drv = fct_reorder(drv, -mean_cty)) %>%
+  ggplot(aes(drv, mean_cty, fill = drv)) +
+  geom_col()
+```
+## fct_lump_()合并小类
+
+
+```{r}
+library(tidyverse)
+data(mpg)
+
+count(mpg, class) %>% arrange(desc(n))
+
+fct_lump_n(mpg$class, 4) %>% fct_count()
+
+fct_lump_min(mpg$class, 30) %>% fct_count()
+
+fct_lump_lowfreq(mpg$class) %>% fct_count()
+
+fct_lump_prop(mpg$class, 0.14) %>% fct_count()
+
+```
+
+
+## fct_collaps()保留指定类别
+
+```{r}
+mpg %>%
+  group_by(class) %>%
+  summarise(proportion = n() / nrow(mpg)) %>%
+  arrange(desc(proportion))
+
+
+fct_collapse(mpg$class,
+             "compact" = c("compact", "subcompact"),
+             "midsize" = c("midsize", "minivan", "pickup")) %>% 
+  fct_count()
+```
+
+## fct_other() 
+
+```{r}
+# c: CNG (Compressed Natural Gas)
+# d: Diesel
+# e: Ethanol blend, typically referring to gasoline blended with a certain proportion of ethanol
+# p: Premium unleaded gasoline 辛烷值较高，通常在91到93之间（在美国），有的甚至更高
+# r: Regular unleaded gasoline 辛烷值较低，通常是87（在美国）
+
+mpg %>% 
+  count(fl) %>% 
+  arrange(desc(n))
+
+fct_other(mpg$fl, keep = c("p", "r")) %>% fct_count()
+
+fct_other(mpg$fl, drop = c("c", "d", "e")) %>% fct_count()
+```
+
+## 保存合并后的类别
+
+```{r}
+# 保存合并后的类别
+
+mpg <- mpg %>% 
+  mutate(fl = fct_other(fl, keep = c("p", "r")),
+         class = fct_collapse(class,
+                               "compact" = c("compact", "subcompact"),
+                               "midsize" = c("midsize", "minivan", "pickup"))
+         )
+
+mpg %>% count(fl)
+
+mpg %>% count(class)
+```
+
