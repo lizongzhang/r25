@@ -25,31 +25,31 @@ about:
 
 ## 教学软件
 
-<img src="img/link.png"  style="width: 24px; height: 24px;margin-right: 10px">R  <https://www.r-project.org/>
+<img src="img/link.png"  style="width: 24px; height: 24px;margin-right: 10px">R  <https://www.r-project.org/>{target="_blank"}
 
-<img src="img/link.png"  style="width: 24px; height: 24px;margin-right: 10px">R Studio <https://posit.co/download/rstudio-desktop/>
+<img src="img/link.png"  style="width: 24px; height: 24px;margin-right: 10px">R Studio <https://posit.co/download/rstudio-desktop/>{target="_blank"}
 
 ## R语言与统计应用课前准备
 
-<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[R和R Studio的下载](https://www.bilibili.com/video/BV1334y1y7U5/)
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[R和R Studio的下载](https://www.bilibili.com/video/BV1334y1y7U5/){target="_blank"}
 
-<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[R和RStudio的安装](https://www.bilibili.com/video/BV1eR4y1V7uW/)
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[R和RStudio的安装](https://www.bilibili.com/video/BV1eR4y1V7uW/){target="_blank"}
 
 
 若无法安装R和R Studio, 请观看：
 
 <img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[不用安装就能用的RStudio------RStudio
-                Cloud](https://www.bilibili.com/video/BV1zY4y1M7HX/)
+                Cloud](https://www.bilibili.com/video/BV1zY4y1M7HX/){target="_blank"}
 
 ## 教学视频
 
-<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[R数据分析实战](https://space.bilibili.com/590872906/channel/collectiondetail?sid=758271)
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[R数据分析实战](https://space.bilibili.com/590872906/channel/collectiondetail?sid=758271){target="_blank"}
 
 <h3 style="color: #044875;">教学平台</h3>
 
 <img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">91速课(<https://www.91suke.com>)：测验，考勤等
 
-<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">[在91速课中设置姓名和学号的方法](https://lizongzhang.github.io/stat/91.html)
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">[在91速课中设置姓名和学号的方法](https://lizongzhang.github.io/stat/91.html){target="_blank"}
 
 - QQ群：提交作业，提问答疑
 
