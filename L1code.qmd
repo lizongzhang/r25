@@ -139,7 +139,7 @@ library(help = "datasets")
 
 
 
-## 绘图函数
+# 绘图
 
 ```{r}  
 # 箱线图
