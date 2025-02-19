@@ -146,12 +146,15 @@ library(help = "datasets")
 boxplot(mtcars$mpg)
 
 # 箱线图自定义标题，边框，填充颜色，水平放置
-boxplot(mtcars$mpg,main="mpg",
-        border="gray",col="cyan",horizontal=TRUE)
+boxplot(mtcars$mpg, main = "mpg",
+        border = "gray", col = "cyan", horizontal = TRUE)
 
 # 直方图自定义标题，边框，填充颜色，组距
-hist(mtcars$mpg,main="mpg",breaks = seq(10,35,5),
-     border="black",col="cyan",xlimt=c(10,35),ylim=c(0,15))
+
+hist(mtcars$mpg)
+
+hist(mtcars$mpg, main = "mpg", breaks = seq(10,35,5),
+     border = "black",col = "cyan", xlim = c(10,35), ylim = c(0,15))
 
 # 散点图
 plot(mtcars$mpg,mtcars$wt)
