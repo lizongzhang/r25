@@ -30,5 +30,12 @@ format:
     theme: [yeti, theme_light.scss]
     toc: true
     number_sections: true
+header-includes:
+  - |
+    <script>
+      document.querySelectorAll('a').forEach(function(link) {
+        link.setAttribute('target', '_blank');
+      });
+    </script>
 editor: source
 
