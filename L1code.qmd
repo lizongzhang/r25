@@ -1,0 +1,253 @@
+---
+title: "L1code"
+output: html_document
+number-sections: true
+---
+
+
+# 赋值符
+
+## 左箭头<-
+```{r}
+# 赋值符：左箭头<- 
+# 快捷键Windows系统：Alt + - 
+# 快捷键Mac系统：Option + -
+
+a <- 1
+a
+```
+
+
+## 等号=
+```{r}
+# = 也可以赋值，但是不推荐使用
+# = 用于给函数的参数赋值
+
+round(pi, digits = 2)
+```
+
+# 常用函数
+
+## 数学运算
+
+```{r}
+# 加法
+2+3
+# 减法
+2-3
+# 乘法
+2*3
+# 除法
+9 / 2
+# 次方
+2 ^ 3
+# 取余
+9 %% 2
+# 整除
+9 %/% 2
+# 自然对数
+log(2)
+# 以10为底的对数
+log10(2)
+# 平方根
+sqrt(2)
+# 绝对值
+abs(-2)
+# 向上取整
+ceiling(2.1)
+# 向下取整
+floor(2.1)
+# 四舍五入
+round(2.1)
+# 圆周率
+pi
+# 圆周率保留6位小数
+round(pi,6)
+
+
+```
+
+
+## 随机数函数
+
+```{r, echo = TRUE, results = "hide"}
+
+# 生成100个在0至1之间均匀分布的随机数
+runif(100)
+
+# 生成100个服从标准正态分布的随机数
+rnorm(100)
+
+# 生成100个服从泊松分布的随机数
+rpois(100,lambda=2)
+
+
+```
+
+
+
+##  统计函数
+
+```{r}
+
+x <- rnorm(1000, mean = 10, sd = 2)
+
+
+mean(x)
+median(x)
+sd(x)
+var(x)
+range(x)
+quantile(x)
+
+summary(x)
+```
+
+## 关系运算符
+
+```{r}
+# 等于
+2 == 3
+# 不等于
+2 != 3
+# 大于
+2 > 3
+# 小于
+2 < 3
+# 大于等于
+2 >= 3
+# 小于等于
+2 <= 3
+
+
+```
+
+
+# 调用R自带数据集
+ 
+```{r }
+data(mtcars)
+mtcars
+
+# 报告mtcars描述性统计量
+summary(mtcars)
+
+#查看R自带的数据集
+library(help = "datasets")
+
+```
+
+
+
+## 绘图函数
+
+```{r}  
+# 箱线图
+boxplot(mtcars$mpg)
+
+# 箱线图自定义标题，边框，填充颜色，水平放置
+boxplot(mtcars$mpg,main="mpg",
+        border="gray",col="cyan",horizontal=TRUE)
+
+# 直方图自定义标题，边框，填充颜色，组距
+hist(mtcars$mpg,main="mpg",breaks = seq(10,35,5),
+     border="black",col="cyan",xlimt=c(10,35),ylim=c(0,15))
+
+# 散点图
+plot(mtcars$mpg,mtcars$wt)
+
+# 折线图
+plot(mtcars$mpg,type="l")
+```
+
+# 包的安装和加载
+
+## 从CRAN安装包
+
+```{r}
+# 安装包
+# install.packages("psych")
+# 加载包
+library(psych)
+describe(mtcars$mpg)
+
+psych::describe(mtcars$mpg)
+psych::describe(mtcars)
+
+
+```
+
+
+## 查看包的信息
+
+```{r}
+# 查看包的信息
+sessionInfo()
+# 查看包的版本
+packageVersion("psych")
+# 查看包的作者
+packageDescription("psych")$Author
+
+```
+
+```{r}
+# 显示R包存储在计算机上的位置
+.libPaths()
+
+# 查看已安装的包
+library()
+
+# 查看已加载的包
+search()
+```
+
+## 加载包
+
+```{r}
+#频繁使用psych
+library(psych) 
+describe(mtcars$mpg)
+describeBy(mtcars$mpg, group = mtcars$cyl)
+
+#偶尔使用psych
+psych::describe(mtcars$mpg)
+psych::describeBy(mtcars$mpg, group = mtcars$cyl)
+```
+
+
+# 查看帮助文档
+
+```{r}  
+# 查看函数帮助文档
+?describe
+
+# 查看包帮助文档
+?psych
+
+# 查看数据集帮助文档
+?mtcars
+
+```
+
+
+# 将数据框导出为Excel文件
+
+```{r}
+# install.packages("writexl")
+library(writexl)
+# 导出的Exel文件放在项目/工作路径中，否则需要写出完整路径
+write_xlsx(mtcars, "mtcars.xlsx")
+```
+
+# 将图形导出
+
+```{r}
+# install.packages("export")
+library(export)
+# 自定义散点图点的颜色、边框、形状、大小、标题
+plot(mtcars$mpg,mtcars$wt,col="red",pch=19,cex=2,main="mpg")
+# 导出的图形放在项目/工作路径中，否则需要写出完整路径
+png("mtcars.png")
+
+```
+ 

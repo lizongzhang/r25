@@ -6,6 +6,10 @@ title: "第1讲"
 
 <img src="img/teacher.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[讲义](https://lizongzhang.github.io/stat/rintro.html){target="_blank"}
 
+<img src="img/code.png" style="width: 24px; height: 24px;margin-right: 10px">[代码](https://lizongzhang.github.io/r25/L1code.html){target="_blank"}
+
+
+
 ## 教学视频
 
 <img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[R Studio 主界面](https://www.bilibili.com/video/BV1NP4y1A7ow/)
@@ -23,11 +27,7 @@ title: "第1讲"
 
 <img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[RStudio如何导入EXCEL文件](https://www.bilibili.com/video/BV1gi4y1m7pD/) 
 
-
-
-
-
-## 课堂练习
+## 课后习题
 
 1 圆的半径为5，计算其周长和面积，结果保留3位小数。
 
@@ -45,7 +45,11 @@ title: "第1讲"
 
 8 生成一个序列，该序列中存放26个大写英文字母。生成一个序列，该序列中存放字母表中前10个小写字母。
 
-9 创建一个项目，在该项目中存放前述题目的代码文件，和第5-6题中生成的图片。 
+9 创建一个项目，在该项目中存放前述题目的代码文件，和第5-6题中生成的图片。
+
+
+## 习题答案
+
 
 ## 拓展资源
 
