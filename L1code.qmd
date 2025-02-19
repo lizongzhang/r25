@@ -156,8 +156,8 @@ hist(mtcars$mpg)
 
 # 直方图自定义标题，边框，填充颜色，组距
 
-hist(mtcars$mpg, main = "mpg", breaks = seq(10,35,5),
-     border = "black",col = "cyan", xlim = c(10,35), ylim = c(0,15))
+hist(mtcars$mpg, main = "mpg", breaks = seq(10,34,3),
+     border = "black",col = "cyan", xlim = c(10,35), ylim = c(0,10))
 
 # 散点图
 plot(mtcars$mpg,mtcars$wt)
