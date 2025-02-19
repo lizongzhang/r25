@@ -368,7 +368,7 @@
     "href": "L1code.html#统计函数",
     "title": "L1code",
     "section": "2.3 统计函数",
-    "text": "2.3 统计函数\n\nx &lt;- rnorm(1000, mean = 10, sd = 2)\n\n\nmean(x)\n\n[1] 9.990032\n\nmedian(x)\n\n[1] 9.993999\n\nsd(x)\n\n[1] 1.975407\n\nvar(x)\n\n[1] 3.902234\n\nrange(x)\n\n[1]  4.102839 16.475634\n\nquantile(x)\n\n       0%       25%       50%       75%      100% \n 4.102839  8.749513  9.993999 11.340625 16.475634 \n\nsummary(x)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  4.103   8.750   9.994   9.990  11.341  16.476"
+    "text": "2.3 统计函数\n\nx &lt;- rnorm(1000, mean = 10, sd = 2)\n\n\nmean(x)\n\n[1] 9.967186\n\nmedian(x)\n\n[1] 9.918499\n\nsd(x)\n\n[1] 1.967633\n\nvar(x)\n\n[1] 3.871581\n\nrange(x)\n\n[1]  3.446401 16.714681\n\nquantile(x)\n\n       0%       25%       50%       75%      100% \n 3.446401  8.729905  9.918499 11.279574 16.714681 \n\nsummary(x)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  3.446   8.730   9.918   9.967  11.280  16.715"
   },
   {
     "objectID": "L1code.html#关系运算符",
