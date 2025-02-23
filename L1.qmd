@@ -50,6 +50,10 @@ title: "第1讲"
 
 ## 习题答案
 
+<img src="img/code.png" style="width: 24px; height: 24px;margin-right: 10px">[习题代码](https://lizongzhang.github.io/r25/L1solution.html){target="_blank"}
+
+
+
 
 ## 拓展资源
 

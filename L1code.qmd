@@ -252,8 +252,9 @@ write_xlsx(mtcars, "mtcars.xlsx")
 library(export)
 # 自定义散点图点的颜色、边框、形状、大小、标题
 plot(mtcars$mpg, mtcars$wt, col = "red", pch = 19,cex = 2,main = "mpg")
+
 # 导出的图形放在项目/工作路径中，否则需要写出完整路径
-png("mtcars.png")
+# png("mtcars.png")
 
 ```
  
