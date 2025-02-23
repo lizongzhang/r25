@@ -4,7 +4,7 @@ title: "第3讲"
 
 # 第3讲 R基础图形工具
 
-<img src="img/teacher.png"  style="width: 24px; height: 24px;margin-right: 10px">[讲义](https://lizongzhang.github.io/stat/base_graph_tool.html){target="_blank"}
+<img src="img/code.png" style="width: 24px; height: 24px;margin-right: 10px">[代码](https://lizongzhang.github.io/r25/L3code.html){target="_blank"}
 
 ## 教学视频
 
@@ -20,7 +20,8 @@ title: "第3讲"
 
 ## 习题讲评
 
-<img src="img/teacher.png"  style="width: 24px; height: 24px;margin-right: 10px">[第3讲习题答案代码](https://lizongzhang.github.io/stat/base_graph_tool.html){target="_blank"}
+<img src="img/code.png" style="width: 24px; height: 24px;margin-right: 10px">[第3讲习题代码](https://lizongzhang.github.io/r25/L3solution.html){target="_blank"}
+
 
 ## 拓展资源
 

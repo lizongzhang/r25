@@ -60,7 +60,7 @@
     "href": "L3.html",
     "title": "第3讲",
     "section": "",
-    "text": "讲义\n\n\nR绘制直方图：hist函数的运用\nR 直方图中如何自定义组数和组距？\n箱线图 boxplot函数\nR 条形图 barplot函数\n散点图的绘制——R中的plot函数\n\n\n\n第3讲习题答案代码"
+    "text": "代码\n\n\nR绘制直方图：hist函数的运用\nR 直方图中如何自定义组数和组距？\n箱线图 boxplot函数\nR 条形图 barplot函数\n散点图的绘制——R中的plot函数\n\n\n\n第3讲习题代码"
   },
   {
     "objectID": "L3.html#教学视频",
@@ -74,7 +74,7 @@
     "href": "L3.html#习题讲评",
     "title": "第3讲",
     "section": "",
-    "text": "第3讲习题答案代码"
+    "text": "第3讲习题代码"
   },
   {
     "objectID": "L7.html",
@@ -403,7 +403,7 @@
     "href": "L2.html",
     "title": "第2讲",
     "section": "",
-    "text": "讲义\n\n\nR的数据类型\nR的数据结构：向量和矩阵\nR的数据结构：数据框\nR的数据结构：列表list"
+    "text": "代码\n\n\nR的数据类型\nR的数据结构：向量和矩阵\nR的数据结构：数据框\nR的数据结构：列表list"
   },
   {
     "objectID": "L2.html#教学视频",
@@ -488,5 +488,558 @@
     "title": "第1讲",
     "section": "",
     "text": "习题代码"
+  },
+  {
+    "objectID": "L3code.html",
+    "href": "L3code.html",
+    "title": "L3code",
+    "section": "",
+    "text": "本节介绍R中基础的图形工具，即不需要安装和加载扩展包即可实现的图形工具。\n本节使用R自带的数据mtcars"
+  },
+  {
+    "objectID": "L3code.html#频数直方图",
+    "href": "L3code.html#频数直方图",
+    "title": "L3code",
+    "section": "1.1 频数直方图",
+    "text": "1.1 频数直方图\n\n#频数直方图\nhist(mtcars$mpg)\n\n\n\n\n\n\n\n\n\n#查看mpg的最小值和最大值\nmin(mtcars$mpg)\n\n[1] 10.4\n\nmax(mtcars$mpg)\n\n[1] 33.9\n\n#breaks=设置分组边界，第1组的下限要小于最小值，最后一组的上限要大于最大值。\n#c()生成向量\nhist(mtcars$mpg, ylim=c(0,15), xlim=c(10, 35),\n     breaks=c(10,15,20,25,30,35),col=4)\n\n\n\n\n\n\n\n#seq(起点，终点，步长)生成等差序列，作为各组的边界\nhist(mtcars$mpg, prob=T, ylim=c(0,0.12), xlim=c(10, 35),\n     breaks=seq(from=10, to=34, by=3),col=5)\n\n\n\n\n\n\n\n\n\n#设定组数 breaks=num\n#若R认为指定的组数的分组效果不佳，R会自动调整一个更适宜的组数。\n#指定分10组，组距为2.4；分12组，组距为2，是整数，分组区间更加适宜阅读。\n#R认为分12组更好，所以没有用“breaks= 10”. \nhist(mtcars$mpg, ylim=c(0,10), xlim=c(10,35),breaks=10,col=3)\n\n\n\n\n\n\n\n#设定组数为5， breaks=5\nhist(mtcars$mpg, ylim=c(0,10), xlim=c(10,35),breaks=5,col=2)\n\n\n\n\n\n\n\n#指定分组边界 breaks=seq(起点，终点，步长)\nhist(mtcars$mpg, ylim=c(0,10), xlim=c(10,35),\n     breaks=seq(10,34,2.4),col=5)\n\n\n\n\n\n\n\n\n\n#添加图形标题 main=\"\",坐标轴标题 xlab=\"\", ylab=\"\"\nhist(mtcars$mpg, ylim=c(0,8), xlim=c(10, 35),\n     breaks=seq(10,34,3), main=\"Histogram of Mpg\",\n     xlab=\"Miles per Gallon\", ylab=\"Frequency\")\n\n\n\n\n\n\n\n#坐标轴刻度水平放置 las=1\nhist(mtcars$mpg, ylim=c(0,10), xlim=c(10, 35),\n     breaks=seq(10,34,3), main=\"Histogram of Mpg\",\n     xlab=\"Miles per Gallon\", ylab=\"Frequency\", las=1,,col=3)\n\n\n\n\n\n\n\n#设置直方图填充色\nhist(mtcars$mpg,las=1,col=5)\n\n\n\n\n\n\n\nhist(mtcars$mpg,las=1,col=\"deepskyblue\")\n\n\n\n\n\n\n\n#col=中设置三种颜色，循环出现\nhist(mtcars$mpg,las=1,col=c(4,3,2))"
+  },
+  {
+    "objectID": "L3code.html#频率直方图",
+    "href": "L3code.html#频率直方图",
+    "title": "L3code",
+    "section": "1.2 频率直方图",
+    "text": "1.2 频率直方图\n\n#绘制频率直方图，纵轴代表概率，增加参数项prob=T\nhist(mtcars$mpg, prob=T, ylim=c(0,0.12), xlim=c(10, 35),col=2)\n\n\n\n\n\n\n\n#绘制频率直方图，增加参数项freq=FALSE 或者 prob=T\nhist(mtcars$mpg, freq=FALSE, ylim=c(0,0.12),col=3)\n\n\n\n\n\n\n\nhist(mtcars$mpg, freq=F, ylim=c(0,0.12),col=4)\n\n\n\n\n\n\n\nhist(mtcars$mpg, prob=T,ylim = c(0,0.10),las=1,xlab = \"MPG\",col=5)\n\n#在频率直方图上添加概率密度曲线\nlines(density(mtcars$mpg),col=2,lwd=3)"
+  },
+  {
+    "objectID": "L3code.html#分组直方图",
+    "href": "L3code.html#分组直方图",
+    "title": "L3code",
+    "section": "1.3 分组直方图",
+    "text": "1.3 分组直方图\n\npar(mfrow=c(1,2))  #设置图形布局1行2列\n\nhist(mtcars$mpg[mtcars$vs== 0],las=1,col=5,breaks = 5,\n     xlab=\"v-shaped\",main=\"Histogram of Mpg\",\n     xlim=c(10,35),ylim = c(0,12))\n\nhist(mtcars$mpg[mtcars$vs== 1],las=1,col=5,\n     xlab=\"straight\",main=\"Histogram of Mpg\",\n      xlim=c(10,35),ylim = c(0,12))\n\n\n\n\n\n\n\n#另一种写法\n\nattach(mtcars) #锁定数据集\n\nhist(mpg[vs== 0],las=1,col=5,breaks = 5,\n     xlab=\"v-shaped\",main=\"Histogram of Mpg\",\n     xlim=c(10,35),ylim = c(0,12))\n\n\n\n\n\n\n\n\n\ntable(cyl)\n\ncyl\n 4  6  8 \n11  7 14 \n\npar(mfrow=c(1,3))  #设置图形布局1行3列\n\nhist(mpg[cyl==4],las=1,col=5,breaks = seq(10,35,5),\n     xlab=\"4 cylinders\",main=\"Histogram of Mpg\",\n     xlim=c(10,35),ylim = c(0,8))\n\nhist(mpg[cyl==6],las=1,col=5,breaks = seq(10,35,5),\n     xlab=\"6 cylinders\",main=\"Histogram of Mpg\",\n     xlim=c(10,35),ylim = c(0,8))\n\nhist(mpg[cyl==8],las=1,col=5,breaks = seq(10,35,5),\n     xlab=\"8 cylinders\",main=\"Histogram of Mpg\",\n     xlim=c(10,35),ylim = c(0,8))"
+  },
+  {
+    "objectID": "L3code.html#普通箱线图",
+    "href": "L3code.html#普通箱线图",
+    "title": "L3code",
+    "section": "2.1 普通箱线图",
+    "text": "2.1 普通箱线图\n\n#箱线图\nboxplot(mpg,main=\"Boxplot of Mpg\", las=1,col=4)\n\n\n\n\n\n\n\n#满足vs==1条件的画箱线图\nboxplot(mpg[vs==1],ylim=c(15,40),main=\"Boxplot of Mpg\", las=1,col=5)\n\n\n\n\n\n\n\n#满足vs==0条件的画箱线图\nboxplot(mpg[vs==0],main=\"Boxplot of Mpg\", las=1,col=4)"
+  },
+  {
+    "objectID": "L3code.html#分组箱线图",
+    "href": "L3code.html#分组箱线图",
+    "title": "L3code",
+    "section": "2.2 分组箱线图",
+    "text": "2.2 分组箱线图\n\n#按am分组后，绘制分组箱线图\nboxplot(mpg~am,main=\"Boxplot of Mpg\", las=1,col=5)\n\n\n\n\n\n\n\n#按vs,am分成四组后，绘制分组箱线图，设置箱体颜色，col=\nboxplot(mpg~vs*am,las=2,col=c(6,5,4,3))\n\n#legend()设置图例,\"topleft\"图例位置，legend=c()图例文本，fill=图例方格填充颜色，cex=图例大小缩放比例，bty = \"n\"图例无矩形框 \nlegend(\"topleft\",legend=c(\"v-shaped & automatic\",\"straight & automatic\",\"v-shaped & manual\",\"straight & manual\"),\n       fill = c(6,5,4,3),cex=0.8,bty = \"n\")"
+  },
+  {
+    "objectID": "L3code.html#单个定性变量的频数分布",
+    "href": "L3code.html#单个定性变量的频数分布",
+    "title": "L3code",
+    "section": "4.1 单个定性变量的频数分布",
+    "text": "4.1 单个定性变量的频数分布\n\nengine_freq &lt;- table(vs)\nengine_freq \n\nvs\n 0  1 \n18 14"
+  },
+  {
+    "objectID": "L3code.html#单个定性变量的百分比",
+    "href": "L3code.html#单个定性变量的百分比",
+    "title": "L3code",
+    "section": "4.2 单个定性变量的百分比",
+    "text": "4.2 单个定性变量的百分比\n\nengine_percent &lt;- engine_freq/32\nengine_percent\n\nvs\n     0      1 \n0.5625 0.4375"
+  },
+  {
+    "objectID": "L3code.html#单个定量变量单项式分组",
+    "href": "L3code.html#单个定量变量单项式分组",
+    "title": "L3code",
+    "section": "4.3 单个定量变量：单项式分组",
+    "text": "4.3 单个定量变量：单项式分组\n\n#频数分布\ncarb_freq &lt;- table(carb)\ncarb_freq\n\ncarb\n 1  2  3  4  6  8 \n 7 10  3 10  1  1 \n\n#百分比\ncarb_percent &lt;- prop.table(table(carb))*100\ncarb_percent\n\ncarb\n     1      2      3      4      6      8 \n21.875 31.250  9.375 31.250  3.125  3.125"
+  },
+  {
+    "objectID": "L3code.html#单个变量组距式分组",
+    "href": "L3code.html#单个变量组距式分组",
+    "title": "L3code",
+    "section": "4.4 单个变量：组距式分组",
+    "text": "4.4 单个变量：组距式分组\n\nrange(mpg)\n\n[1] 10.4 33.9\n\nbreaks=seq(10,35,5)\nbreaks\n\n[1] 10 15 20 25 30 35\n\nmpg.cut = cut(mpg, breaks, right=FALSE) #cut函数将数值映射到分组区间\nmpg.cut\n\n [1] [20,25) [20,25) [20,25) [20,25) [15,20) [15,20) [10,15) [20,25) [20,25)\n[10] [15,20) [15,20) [15,20) [15,20) [15,20) [10,15) [10,15) [10,15) [30,35)\n[19] [30,35) [30,35) [20,25) [15,20) [15,20) [10,15) [15,20) [25,30) [25,30)\n[28] [30,35) [15,20) [15,20) [15,20) [20,25)\nLevels: [10,15) [15,20) [20,25) [25,30) [30,35)\n\nmpg_freq &lt;- table(mpg.cut)\nmpg_freq\n\nmpg.cut\n[10,15) [15,20) [20,25) [25,30) [30,35) \n      5      13       8       2       4"
+  },
+  {
+    "objectID": "L3code.html#两个变量的列联表",
+    "href": "L3code.html#两个变量的列联表",
+    "title": "L3code",
+    "section": "4.5 两个变量的列联表",
+    "text": "4.5 两个变量的列联表\n\ntab1 &lt;- table(vs,am)\ntab1\n\n   am\nvs   0  1\n  0 12  6\n  1  7  7\n\n#为列联表添加行合计和列合计\naddmargins(tab1) \n\n     am\nvs     0  1 Sum\n  0   12  6  18\n  1    7  7  14\n  Sum 19 13  32\n\n#将列联表的频数转换成百分数\naddmargins(prop.table(tab1)*100) \n\n     am\nvs          0       1     Sum\n  0    37.500  18.750  56.250\n  1    21.875  21.875  43.750\n  Sum  59.375  40.625 100.000\n\n\n\ntable(vs, mpg.cut)\n\n   mpg.cut\nvs  [10,15) [15,20) [20,25) [25,30) [30,35)\n  0       5      10       2       1       0\n  1       0       3       6       1       4\n\ntable(vs, mpg.cut)\n\n   mpg.cut\nvs  [10,15) [15,20) [20,25) [25,30) [30,35)\n  0       5      10       2       1       0\n  1       0       3       6       1       4\n\naddmargins(table(vs, mpg.cut))#列联表中显示行合计列合计\n\n     mpg.cut\nvs    [10,15) [15,20) [20,25) [25,30) [30,35) Sum\n  0         5      10       2       1       0  18\n  1         0       3       6       1       4  14\n  Sum       5      13       8       2       4  32"
+  },
+  {
+    "objectID": "L3code.html#普通条形图",
+    "href": "L3code.html#普通条形图",
+    "title": "L3code",
+    "section": "5.1 普通条形图",
+    "text": "5.1 普通条形图\n\n#先制作出定性变量vs的频数分布表\nvs.table &lt;- table(vs)\n\n#查看vs的频数分布表\nvs.table\n\nvs\n 0  1 \n18 14 \n\n#绘制vs的条形图\nbarplot(vs.table, ylim = c(0,20), col = c(3,5),\n        xlab = \"Engine:0 = V-shaped, 1 = Straight\")\n\naxis(1, at = c(10,20))\n\n\n\n\n\n\n\n\n\n#给条形添加分组标签name.arg = 存放标签文本的对象\n#给条形标注频数text()\n\nvs.barplot &lt;- barplot(vs.table, ylim = c(0,20), col = c(3,5),\n        names.arg = c(\"V-shaped\", \"Straight\"),\n        xlab = \"Engine\")\n\ntext(vs.barplot, vs.table+1, label = vs.table)\n\n\n\n\n\n\n\n\n\n# 水平放置条形 horiz = T\n# 坐标轴字体旋转las = 1\n\nvs.barplot &lt;- barplot(vs.table, col = c(3,4),\n                      ylim = c(0,8),\n                      xlim = c(0,20),\n                      names.arg = c(\"V-shaped\", \"Straight\"),\n                      xlab = \"Frequency\",\n                      ylab = \"Type of Engine\",\n                      horiz = T, \n                      las = 1, #label axis style\n                      cex.axis = 0.8, #character expansion\n                      cex.names = 0.8,\n                      cex.lab = 0.9)\n\ntext(vs.table+0.7, vs.barplot, labels = vs.table,cex = 0.8)\n\ntitle(main = \"Barplot of Engine\", line = -5)\n\n\n\n\n\n\n\n\n\n#条形图的修饰：填充条纹、间距宽度\ncyl.table &lt;- table(cyl)\n\ncyl.barplot &lt;-barplot(cyl.table, col = c(3,4,5),\n        ylim = c(0,20),\n        main = \"Barplot of Number of Cylinders\",\n        names.arg = c(\"4 Cylinders\", \n                      \"6 Cylinders\",\"8 Cylinders\"),\n        density = c(10,20,30),\n        angle = c(0,45,90),\n        space = c(1.5,1.5,1.5))\n\ntext(cyl.barplot, cyl.table+1, labels = cyl.table)"
+  },
+  {
+    "objectID": "L3code.html#堆栈条形图",
+    "href": "L3code.html#堆栈条形图",
+    "title": "L3code",
+    "section": "5.2 堆栈条形图",
+    "text": "5.2 堆栈条形图\n\n#legend.text = T,图例\n# density = 线条密度，angle = 线条角度\n# space = 条形间隙与条形宽度的比例\n\ntab1 &lt;- table(vs,am)\ntab1\n\n   am\nvs   0  1\n  0 12  6\n  1  7  7\n\ntable(vs)\n\nvs\n 0  1 \n18 14 \n\ntable(am)\n\nam\n 0  1 \n19 13 \n\nbarplot(tab1,ylim=c(0,25),xlim=c(0,4),\n        legend.text = T, \n        las=1, col=rainbow(2),\n        density=20,angle=45,\n        space = 0.3,\n        main = \"stacked barplot\",cex.main = 2,\n        ylab=\"frequency\", xlab=\"transmission\") \n#给图形添加矩形框\nbox()\n\n\n\n\n\n\n\n\n\n#给图形添加图例，legend()函数，可进行更细致的设置\n#x = \"topright\"设置位置，可用关键词\"bottomright\", \"bottom\", \"bottomleft\", \"left\", \"topleft\", \"top\", \n#\"topright\", \"right\" and \"center\"\n#也可直接指定图例的坐标值\n#legend = c(\"straight\", \"v-shaped\") 图例文本\n#fill = c(5,6) 图例小方块，设置颜色\n#density=20, angle=45 填充线条及角度\n#cex=2 图例大小倍数\n#bty=\"n\"图例周边没有矩形框\n\nbarplot(tab1,ylim=c(0,25),xlim=c(0,4),\n                las=1, col=c(5,6),\n        density=20,angle=45,\n        space = 0.3,\n        main = \"stacked barplot\",cex.main = 2,\n        ylab=\"frequency\", xlab=\"transmission\") \n\nlegend(x = \"topright\", \n       legend = c(\"straight\", \"v-shaped\"),  # Legend texts\n       fill = c(5,6),    # Line types\n       density=20, angle=45,\n       cex=1.2,\n       bty=\"n\")"
+  },
+  {
+    "objectID": "L3code.html#分组条形图",
+    "href": "L3code.html#分组条形图",
+    "title": "L3code",
+    "section": "5.3 分组条形图",
+    "text": "5.3 分组条形图\n\n#绘制分组条形图，beside = T不是堆栈的\n#space=c(0.1,0.5) 0.1组内间隙，0.5组间间隙\ntab1\n\n   am\nvs   0  1\n  0 12  6\n  1  7  7\n\nbarplot(tab1,ylim=c(0,20),xlim=c(0,8),\n        legend.text = T,\n        las=1, col=rainbow(2),\n        density=25,\n        angle=45,space=c(0.1,0.5),\n        beside = T)\n\n\n\n\n\n\n\nbarplot(tab1,ylim=c(0,10),xlim=c(0,12),\n        legend.text = T,\n        las=1, col=rainbow(2),\n        density=25,\n        angle=45,space=c(0.1,0.5),\n        beside = T,\n        horiz = T)"
+  },
+  {
+    "objectID": "L3code.html#帕累托图",
+    "href": "L3code.html#帕累托图",
+    "title": "L3code",
+    "section": "5.4 帕累托图",
+    "text": "5.4 帕累托图\n\ncyl_freq &lt;- sort(table(cyl),decreasing = T)\ncyl_freq\n\ncyl\n 8  4  6 \n14 11  7 \n\npareto &lt;- barplot(cyl_freq,ylim = c(0,16),xlim = c(0,4),legend.text = T ,width = 0.5,col=c(3,4,5))\ntext(pareto, cyl_freq, pos=3,labels=cyl_freq) #添加频数标签\nbox()"
+  },
+  {
+    "objectID": "L3code.html#普通散点图",
+    "href": "L3code.html#普通散点图",
+    "title": "L3code",
+    "section": "7.1 普通散点图",
+    "text": "7.1 普通散点图\n\n#散点图\nplot(disp,mpg,las=1,col=2)\n\n\n\n\n\n\n\n#pch= 点的标记形状，可填数字或者文本\nplot(disp,mpg,las=1,pch=2,col=4)\n\n\n\n\n\n\n\nplot(disp,mpg,las=1,pch=\"@\",col=5)\n\n\n\n\n\n\n\n#为散点图添加回归线\n#abline()为图形添加直线\n#lm()拟合线性模型linear model\nplot(disp,mpg,las=1,pch=2,xlab=\"displacement\",ylab = \"mpg\")\nabline(lm(mpg~disp),col=3,lwd=5,lty=2)\n\n\n#text()在图形中添加文本\ncor(mpg,disp) #计算相关系数，然后把相关系数的值标在图形中\n\n[1] -0.8475514\n\ntext(200,25,label=\"r=-0.8476\")"
+  },
+  {
+    "objectID": "L3code.html#分组散点图",
+    "href": "L3code.html#分组散点图",
+    "title": "L3code",
+    "section": "7.2 分组散点图",
+    "text": "7.2 分组散点图\n\n#对[vs==0]的观测单元画散点图\nplot(disp[vs==0],mpg[vs==0],las=1,pch=2,col=2)\n#在前述图形上添加[vs==1]的观测单元的散点\npoints(disp[vs==1],mpg[vs==1],pch=4,col=4)\n#图例横坐标350，纵坐标25\n#cex=1.2 图例缩放比例，大于1比默认值大，小于1比默认值小\nlegend(350,25, \n       legend = c(\"v-shaped\", \"straight\"),\n       pch=c(2,4),  \n       col = c(2,4),\n       cex=0.9,\n       bty=\"n\")"
+  },
+  {
+    "objectID": "L3code.html#随机数函数和直方图",
+    "href": "L3code.html#随机数函数和直方图",
+    "title": "L3code",
+    "section": "8.1 随机数函数和直方图",
+    "text": "8.1 随机数函数和直方图\n绘制下列向量（序列）的直方图,为直方图填充你喜爱的颜色。\n\n生成一个服从均匀分布的向量（序列），该向量包含1000个值。\n生成一个服从标准正态分布的向量（序列），该向量包含1000个值。\n生成一个服从均值为80，标准差为5的正态分布的向量（序列），该向量包含1000个值。\n生成一个服从自由度为5的卡方分布的向量（序列），该向量包含1000个值 。\n生成一个服从自由度为5的t分布的向量（序列），该向量包含1000个值。\n生成一个服从F(5,10)分布的向量（序列），该向量包含1000个值。\n\n提示：随机数函数\n\n正态分布 rnorm(n, mean=0, sd=1)\n均匀分布 runif(n, min=0, max=100)\nT分布 rt()\n卡方分布 rchisq()\nF分布 rf( )"
+  },
+  {
+    "objectID": "L3code.html#mtcars的图表展示",
+    "href": "L3code.html#mtcars的图表展示",
+    "title": "L3code",
+    "section": "8.2 mtcars的图表展示",
+    "text": "8.2 mtcars的图表展示\n数据集：mtcars\n\n绘制qsec的直方图（纵轴代表频数），为直方图设置标题，为横轴纵轴设置合理的刻度范围，将组距设置为2， 为直方图设置你喜爱的颜色。\n绘制qsec的频率直方图（纵轴代表频率），为横轴纵轴设置合理的刻度范围，在该图中添加一条概率密度曲线，为概率密度曲线设置你喜爱的颜色。\n绘制wt的直方图（纵轴代表频数），为横轴纵轴设置合理的刻度范围，设置图形标题，为直方图设置你喜爱的颜色。\n绘制vs的条形图，纵轴代表频数。\n绘制am的条形图，条形水平放置。\n绘制am的饼图。\n绘制wt的箱线图。\n将汽车分为手动挡和自动挡两组，绘制这两个组别wt的箱线图，并设置你喜爱的颜色。\n将汽车分为手动挡和自动挡两组，绘制这两个组别qsec的箱线图，并设置你喜爱的颜色。"
+  },
+  {
+    "objectID": "base_graph_tool.html",
+    "href": "base_graph_tool.html",
+    "title": "3 R基础图形工具",
+    "section": "",
+    "text": "本节介绍R中基础的图形工具，即不需要安装和加载扩展包即可实现的图形工具。\n本节使用R自带的数据mtcars"
+  },
+  {
+    "objectID": "base_graph_tool.html#频数直方图",
+    "href": "base_graph_tool.html#频数直方图",
+    "title": "3 R基础图形工具",
+    "section": "频数直方图",
+    "text": "频数直方图\n\n#频数直方图\nhist(mtcars$mpg)\n\n\n\n\n\n\n\n\n\n#查看mpg的最小值和最大值\nmin(mtcars$mpg)\n\n[1] 10.4\n\nmax(mtcars$mpg)\n\n[1] 33.9\n\n#breaks=设置分组边界，第1组的下限要小于最小值，最后一组的上限要大于最大值。\n#c()生成向量\nhist(mtcars$mpg, ylim=c(0,15), xlim=c(10, 35),\n     breaks=c(10,15,20,25,30,35),col=4)\n\n\n\n\n\n\n\n#seq(起点，终点，步长)生成等差序列，作为各组的边界\nhist(mtcars$mpg, prob=T, ylim=c(0,0.12), xlim=c(10, 35),\n     breaks=seq(from=10, to=34, by=3),col=5)\n\n\n\n\n\n\n\n\n\n#设定组数 breaks=num\n#若R认为指定的组数的分组效果不佳，R会自动调整一个更适宜的组数。\n#指定分10组，组距为2.4；分12组，组距为2，是整数，分组区间更加适宜阅读。\n#R认为分12组更好，所以没有用“breaks= 10”. \nhist(mtcars$mpg, ylim=c(0,10), xlim=c(10,35),breaks=10,col=3)\n\n\n\n\n\n\n\n#设定组数为5， breaks=5\nhist(mtcars$mpg, ylim=c(0,10), xlim=c(10,35),breaks=5,col=2)\n\n\n\n\n\n\n\n#指定分组边界 breaks=seq(起点，终点，步长)\nhist(mtcars$mpg, ylim=c(0,10), xlim=c(10,35),\n     breaks=seq(10,34,2.4),col=5)\n\n\n\n\n\n\n\n\n\n#添加图形标题 main=\"\",坐标轴标题 xlab=\"\", ylab=\"\"\nhist(mtcars$mpg, ylim=c(0,8), xlim=c(10, 35),\n     breaks=seq(10,34,3), main=\"Histogram of Mpg\",\n     xlab=\"Miles per Gallon\", ylab=\"Frequency\")\n\n\n\n\n\n\n\n#坐标轴刻度水平放置 las=1\nhist(mtcars$mpg, ylim=c(0,10), xlim=c(10, 35),\n     breaks=seq(10,34,3), main=\"Histogram of Mpg\",\n     xlab=\"Miles per Gallon\", ylab=\"Frequency\", las=1,,col=3)\n\n\n\n\n\n\n\n#设置直方图填充色\nhist(mtcars$mpg,las=1,col=5)\n\n\n\n\n\n\n\nhist(mtcars$mpg,las=1,col=\"deepskyblue\")\n\n\n\n\n\n\n\n#col=中设置三种颜色，循环出现\nhist(mtcars$mpg,las=1,col=c(4,3,2))"
+  },
+  {
+    "objectID": "base_graph_tool.html#频率直方图",
+    "href": "base_graph_tool.html#频率直方图",
+    "title": "3 R基础图形工具",
+    "section": "频率直方图",
+    "text": "频率直方图\n\n#绘制频率直方图，纵轴代表概率，增加参数项prob=T\nhist(mtcars$mpg, prob=T, ylim=c(0,0.12), xlim=c(10, 35),col=2)\n\n\n\n\n\n\n\n#绘制频率直方图，增加参数项freq=FALSE 或者 prob=T\nhist(mtcars$mpg, freq=FALSE, ylim=c(0,0.12),col=3)\n\n\n\n\n\n\n\nhist(mtcars$mpg, freq=F, ylim=c(0,0.12),col=4)\n\n\n\n\n\n\n\nhist(mtcars$mpg, prob=T,ylim = c(0,0.10),las=1,xlab = \"MPG\",col=5)\n\n#在频率直方图上添加概率密度曲线\nlines(density(mtcars$mpg),col=2,lwd=3)"
+  },
+  {
+    "objectID": "base_graph_tool.html#分组直方图",
+    "href": "base_graph_tool.html#分组直方图",
+    "title": "3 R基础图形工具",
+    "section": "分组直方图",
+    "text": "分组直方图\n\npar(mfrow=c(1,2))  #设置图形布局1行2列\n\nhist(mtcars$mpg[mtcars$vs== 0],las=1,col=5,breaks = 5,\n     xlab=\"v-shaped\",main=\"Histogram of Mpg\",\n     xlim=c(10,35),ylim = c(0,12))\n\nhist(mtcars$mpg[mtcars$vs== 1],las=1,col=5,\n     xlab=\"straight\",main=\"Histogram of Mpg\",\n      xlim=c(10,35),ylim = c(0,12))\n\n\n\n\n\n\n\n#另一种写法\n\nattach(mtcars) #锁定数据集\n\nhist(mpg[vs== 0],las=1,col=5,breaks = 5,\n     xlab=\"v-shaped\",main=\"Histogram of Mpg\",\n     xlim=c(10,35),ylim = c(0,12))\n\n\n\n\n\n\n\n\n\ntable(cyl)\n\ncyl\n 4  6  8 \n11  7 14 \n\npar(mfrow=c(1,3))  #设置图形布局1行3列\n\nhist(mpg[cyl==4],las=1,col=5,breaks = seq(10,35,5),\n     xlab=\"4 cylinders\",main=\"Histogram of Mpg\",\n     xlim=c(10,35),ylim = c(0,8))\n\nhist(mpg[cyl==6],las=1,col=5,breaks = seq(10,35,5),\n     xlab=\"6 cylinders\",main=\"Histogram of Mpg\",\n     xlim=c(10,35),ylim = c(0,8))\n\nhist(mpg[cyl==8],las=1,col=5,breaks = seq(10,35,5),\n     xlab=\"8 cylinders\",main=\"Histogram of Mpg\",\n     xlim=c(10,35),ylim = c(0,8))"
+  },
+  {
+    "objectID": "base_graph_tool.html#普通箱线图",
+    "href": "base_graph_tool.html#普通箱线图",
+    "title": "3 R基础图形工具",
+    "section": "普通箱线图",
+    "text": "普通箱线图\n\n#箱线图\nboxplot(mpg,main=\"Boxplot of Mpg\", las=1,col=4)\n\n\n\n\n\n\n\n#满足vs==1条件的画箱线图\nboxplot(mpg[vs==1],ylim=c(15,40),main=\"Boxplot of Mpg\", las=1,col=5)\n\n\n\n\n\n\n\n#满足vs==0条件的画箱线图\nboxplot(mpg[vs==0],main=\"Boxplot of Mpg\", las=1,col=4)"
+  },
+  {
+    "objectID": "base_graph_tool.html#分组箱线图",
+    "href": "base_graph_tool.html#分组箱线图",
+    "title": "3 R基础图形工具",
+    "section": "分组箱线图",
+    "text": "分组箱线图\n\n#按am分组后，绘制分组箱线图\nboxplot(mpg~am,main=\"Boxplot of Mpg\", las=1,col=5)\n\n\n\n\n\n\n\n#按vs,am分成四组后，绘制分组箱线图，设置箱体颜色，col=\nboxplot(mpg~vs*am,las=2,col=c(6,5,4,3))\n\n#legend()设置图例,\"topleft\"图例位置，legend=c()图例文本，fill=图例方格填充颜色，cex=图例大小缩放比例，bty = \"n\"图例无矩形框 \nlegend(\"topleft\",legend=c(\"v-shaped & automatic\",\"straight & automatic\",\"v-shaped & manual\",\"straight & manual\"),\n       fill = c(6,5,4,3),cex=0.8,bty = \"n\")"
+  },
+  {
+    "objectID": "base_graph_tool.html#单个定性变量的频数分布",
+    "href": "base_graph_tool.html#单个定性变量的频数分布",
+    "title": "3 R基础图形工具",
+    "section": "单个定性变量的频数分布",
+    "text": "单个定性变量的频数分布\n\nengine_freq &lt;- table(vs)\nengine_freq \n\nvs\n 0  1 \n18 14"
+  },
+  {
+    "objectID": "base_graph_tool.html#单个定性变量的百分比",
+    "href": "base_graph_tool.html#单个定性变量的百分比",
+    "title": "3 R基础图形工具",
+    "section": "单个定性变量的百分比",
+    "text": "单个定性变量的百分比\n\nengine_percent &lt;- engine_freq/32\nengine_percent\n\nvs\n     0      1 \n0.5625 0.4375"
+  },
+  {
+    "objectID": "base_graph_tool.html#单个定量变量单项式分组",
+    "href": "base_graph_tool.html#单个定量变量单项式分组",
+    "title": "3 R基础图形工具",
+    "section": "单个定量变量：单项式分组",
+    "text": "单个定量变量：单项式分组\n\n#频数分布\ncarb_freq &lt;- table(carb)\ncarb_freq\n\ncarb\n 1  2  3  4  6  8 \n 7 10  3 10  1  1 \n\n#百分比\ncarb_percent &lt;- prop.table(table(carb))*100\ncarb_percent\n\ncarb\n     1      2      3      4      6      8 \n21.875 31.250  9.375 31.250  3.125  3.125"
+  },
+  {
+    "objectID": "base_graph_tool.html#单个变量组距式分组",
+    "href": "base_graph_tool.html#单个变量组距式分组",
+    "title": "3 R基础图形工具",
+    "section": "单个变量：组距式分组",
+    "text": "单个变量：组距式分组\n\nrange(mpg)\n\n[1] 10.4 33.9\n\nbreaks=seq(10,35,5)\nbreaks\n\n[1] 10 15 20 25 30 35\n\nmpg.cut = cut(mpg, breaks, right=FALSE) #cut函数将数值映射到分组区间\nmpg.cut\n\n [1] [20,25) [20,25) [20,25) [20,25) [15,20) [15,20) [10,15) [20,25) [20,25)\n[10] [15,20) [15,20) [15,20) [15,20) [15,20) [10,15) [10,15) [10,15) [30,35)\n[19] [30,35) [30,35) [20,25) [15,20) [15,20) [10,15) [15,20) [25,30) [25,30)\n[28] [30,35) [15,20) [15,20) [15,20) [20,25)\nLevels: [10,15) [15,20) [20,25) [25,30) [30,35)\n\nmpg_freq &lt;- table(mpg.cut)\nmpg_freq\n\nmpg.cut\n[10,15) [15,20) [20,25) [25,30) [30,35) \n      5      13       8       2       4"
+  },
+  {
+    "objectID": "base_graph_tool.html#两个变量的列联表",
+    "href": "base_graph_tool.html#两个变量的列联表",
+    "title": "3 R基础图形工具",
+    "section": "两个变量的列联表",
+    "text": "两个变量的列联表\n\ntab1 &lt;- table(vs,am)\ntab1\n\n   am\nvs   0  1\n  0 12  6\n  1  7  7\n\n#为列联表添加行合计和列合计\naddmargins(tab1) \n\n     am\nvs     0  1 Sum\n  0   12  6  18\n  1    7  7  14\n  Sum 19 13  32\n\n#将列联表的频数转换成百分数\naddmargins(prop.table(tab1)*100) \n\n     am\nvs          0       1     Sum\n  0    37.500  18.750  56.250\n  1    21.875  21.875  43.750\n  Sum  59.375  40.625 100.000\n\n\n\ntable(vs, mpg.cut)\n\n   mpg.cut\nvs  [10,15) [15,20) [20,25) [25,30) [30,35)\n  0       5      10       2       1       0\n  1       0       3       6       1       4\n\ntable(vs, mpg.cut)\n\n   mpg.cut\nvs  [10,15) [15,20) [20,25) [25,30) [30,35)\n  0       5      10       2       1       0\n  1       0       3       6       1       4\n\naddmargins(table(vs, mpg.cut))#列联表中显示行合计列合计\n\n     mpg.cut\nvs    [10,15) [15,20) [20,25) [25,30) [30,35) Sum\n  0         5      10       2       1       0  18\n  1         0       3       6       1       4  14\n  Sum       5      13       8       2       4  32"
+  },
+  {
+    "objectID": "base_graph_tool.html#普通条形图",
+    "href": "base_graph_tool.html#普通条形图",
+    "title": "3 R基础图形工具",
+    "section": "普通条形图",
+    "text": "普通条形图\n\n#先制作出定性变量vs的频数分布表\nvs.table &lt;- table(vs)\n\n#查看vs的频数分布表\nvs.table\n\nvs\n 0  1 \n18 14 \n\n#绘制vs的条形图\nbarplot(vs.table, ylim = c(0,20), col = c(3,5),\n        xlab = \"Engine:0 = V-shaped, 1 = Straight\")\n\naxis(1, at = c(10,20))\n\n\n\n\n\n\n\n\n\n#给条形添加分组标签name.arg = 存放标签文本的对象\n#给条形标注频数text()\n\nvs.barplot &lt;- barplot(vs.table, ylim = c(0,20), col = c(3,5),\n        names.arg = c(\"V-shaped\", \"Straight\"),\n        xlab = \"Engine\")\n\ntext(vs.barplot, vs.table+1, label = vs.table)\n\n\n\n\n\n\n\n\n\n# 水平放置条形 horiz = T\n# 坐标轴字体旋转las = 1\n\nvs.barplot &lt;- barplot(vs.table, col = c(3,4),\n                      ylim = c(0,8),\n                      xlim = c(0,20),\n                      names.arg = c(\"V-shaped\", \"Straight\"),\n                      xlab = \"Frequency\",\n                      ylab = \"Type of Engine\",\n                      horiz = T, \n                      las = 1, #label axis style\n                      cex.axis = 0.8, #character expansion\n                      cex.names = 0.8,\n                      cex.lab = 0.9)\n\ntext(vs.table+0.7, vs.barplot, labels = vs.table,cex = 0.8)\n\ntitle(main = \"Barplot of Engine\", line = -5)\n\n\n\n\n\n\n\n\n\n#条形图的修饰：填充条纹、间距宽度\ncyl.table &lt;- table(cyl)\n\ncyl.barplot &lt;-barplot(cyl.table, col = c(3,4,5),\n        ylim = c(0,20),\n        main = \"Barplot of Number of Cylinders\",\n        names.arg = c(\"4 Cylinders\", \n                      \"6 Cylinders\",\"8 Cylinders\"),\n        density = c(10,20,30),\n        angle = c(0,45,90),\n        space = c(1.5,1.5,1.5))\n\ntext(cyl.barplot, cyl.table+1, labels = cyl.table)"
+  },
+  {
+    "objectID": "base_graph_tool.html#堆栈条形图",
+    "href": "base_graph_tool.html#堆栈条形图",
+    "title": "3 R基础图形工具",
+    "section": "堆栈条形图",
+    "text": "堆栈条形图\n\n#legend.text = T,图例\n# density = 线条密度，angle = 线条角度\n# space = 条形间隙与条形宽度的比例\n\ntab1 &lt;- table(vs,am)\ntab1\n\n   am\nvs   0  1\n  0 12  6\n  1  7  7\n\ntable(vs)\n\nvs\n 0  1 \n18 14 \n\ntable(am)\n\nam\n 0  1 \n19 13 \n\nbarplot(tab1,ylim=c(0,25),xlim=c(0,4),\n        legend.text = T, \n        las=1, col=rainbow(2),\n        density=20,angle=45,\n        space = 0.3,\n        main = \"stacked barplot\",cex.main = 2,\n        ylab=\"frequency\", xlab=\"transmission\") \n#给图形添加矩形框\nbox()\n\n\n\n\n\n\n\n\n\n#给图形添加图例，legend()函数，可进行更细致的设置\n#x = \"topright\"设置位置，可用关键词\"bottomright\", \"bottom\", \"bottomleft\", \"left\", \"topleft\", \"top\", \n#\"topright\", \"right\" and \"center\"\n#也可直接指定图例的坐标值\n#legend = c(\"straight\", \"v-shaped\") 图例文本\n#fill = c(5,6) 图例小方块，设置颜色\n#density=20, angle=45 填充线条及角度\n#cex=2 图例大小倍数\n#bty=\"n\"图例周边没有矩形框\n\nbarplot(tab1,ylim=c(0,25),xlim=c(0,4),\n                las=1, col=c(5,6),\n        density=20,angle=45,\n        space = 0.3,\n        main = \"stacked barplot\",cex.main = 2,\n        ylab=\"frequency\", xlab=\"transmission\") \n\nlegend(x = \"topright\", \n       legend = c(\"straight\", \"v-shaped\"),  # Legend texts\n       fill = c(5,6),    # Line types\n       density=20, angle=45,\n       cex=1.2,\n       bty=\"n\")"
+  },
+  {
+    "objectID": "base_graph_tool.html#分组条形图",
+    "href": "base_graph_tool.html#分组条形图",
+    "title": "3 R基础图形工具",
+    "section": "分组条形图",
+    "text": "分组条形图\n\n#绘制分组条形图，beside = T不是堆栈的\n#space=c(0.1,0.5) 0.1组内间隙，0.5组间间隙\ntab1\n\n   am\nvs   0  1\n  0 12  6\n  1  7  7\n\nbarplot(tab1,ylim=c(0,20),xlim=c(0,8),\n        legend.text = T,\n        las=1, col=rainbow(2),\n        density=25,\n        angle=45,space=c(0.1,0.5),\n        beside = T)\n\n\n\n\n\n\n\nbarplot(tab1,ylim=c(0,10),xlim=c(0,12),\n        legend.text = T,\n        las=1, col=rainbow(2),\n        density=25,\n        angle=45,space=c(0.1,0.5),\n        beside = T,\n        horiz = T)"
+  },
+  {
+    "objectID": "base_graph_tool.html#帕累托图",
+    "href": "base_graph_tool.html#帕累托图",
+    "title": "3 R基础图形工具",
+    "section": "帕累托图",
+    "text": "帕累托图\n\ncyl_freq &lt;- sort(table(cyl),decreasing = T)\ncyl_freq\n\ncyl\n 8  4  6 \n14 11  7 \n\npareto &lt;- barplot(cyl_freq,ylim = c(0,16),xlim = c(0,4),legend.text = T ,width = 0.5,col=c(3,4,5))\ntext(pareto, cyl_freq, pos=3,labels=cyl_freq) #添加频数标签\nbox()"
+  },
+  {
+    "objectID": "base_graph_tool.html#普通散点图",
+    "href": "base_graph_tool.html#普通散点图",
+    "title": "3 R基础图形工具",
+    "section": "普通散点图",
+    "text": "普通散点图\n\n#散点图\nplot(disp,mpg,las=1,col=2)\n\n\n\n\n\n\n\n#pch= 点的标记形状，可填数字或者文本\nplot(disp,mpg,las=1,pch=2,col=4)\n\n\n\n\n\n\n\nplot(disp,mpg,las=1,pch=\"@\",col=5)\n\n\n\n\n\n\n\n#为散点图添加回归线\n#abline()为图形添加直线\n#lm()拟合线性模型linear model\nplot(disp,mpg,las=1,pch=2,xlab=\"displacement\",ylab = \"mpg\")\nabline(lm(mpg~disp),col=3,lwd=5,lty=2)\n\n\n#text()在图形中添加文本\ncor(mpg,disp) #计算相关系数，然后把相关系数的值标在图形中\n\n[1] -0.8475514\n\ntext(200,25,label=\"r=-0.8476\")"
+  },
+  {
+    "objectID": "base_graph_tool.html#分组散点图",
+    "href": "base_graph_tool.html#分组散点图",
+    "title": "3 R基础图形工具",
+    "section": "分组散点图",
+    "text": "分组散点图\n\n#对[vs==0]的观测单元画散点图\nplot(disp[vs==0],mpg[vs==0],las=1,pch=2,col=2)\n#在前述图形上添加[vs==1]的观测单元的散点\npoints(disp[vs==1],mpg[vs==1],pch=4,col=4)\n#图例横坐标350，纵坐标25\n#cex=1.2 图例缩放比例，大于1比默认值大，小于1比默认值小\nlegend(350,25, \n       legend = c(\"v-shaped\", \"straight\"),\n       pch=c(2,4),  \n       col = c(2,4),\n       cex=0.9,\n       bty=\"n\")"
+  },
+  {
+    "objectID": "base_graph_tool.html#随机数函数和直方图",
+    "href": "base_graph_tool.html#随机数函数和直方图",
+    "title": "3 R基础图形工具",
+    "section": "随机数函数和直方图",
+    "text": "随机数函数和直方图\n绘制下列向量（序列）的直方图,为直方图填充你喜爱的颜色。\n\n生成一个服从均匀分布的向量（序列），该向量包含1000个值。\n生成一个服从标准正态分布的向量（序列），该向量包含1000个值。\n生成一个服从均值为80，标准差为5的正态分布的向量（序列），该向量包含1000个值。\n生成一个服从自由度为5的卡方分布的向量（序列），该向量包含1000个值 。\n生成一个服从自由度为5的t分布的向量（序列），该向量包含1000个值。\n生成一个服从F(5,10)分布的向量（序列），该向量包含1000个值。\n\n提示：随机数函数\n\n正态分布 rnorm(n, mean=0, sd=1)\n均匀分布 runif(n, min=0, max=100)\nT分布 rt()\n卡方分布 rchisq()\nF分布 rf( )"
+  },
+  {
+    "objectID": "base_graph_tool.html#mtcars的图表展示",
+    "href": "base_graph_tool.html#mtcars的图表展示",
+    "title": "3 R基础图形工具",
+    "section": "mtcars的图表展示",
+    "text": "mtcars的图表展示\n数据集：mtcars\n\n绘制qsec的直方图（纵轴代表频数），为直方图设置标题，为横轴纵轴设置合理的刻度范围，将组距设置为2， 为直方图设置你喜爱的颜色。\n绘制qsec的频率直方图（纵轴代表频率），为横轴纵轴设置合理的刻度范围，在该图中添加一条概率密度曲线，为概率密度曲线设置你喜爱的颜色。\n绘制wt的直方图（纵轴代表频数），为横轴纵轴设置合理的刻度范围，设置图形标题，为直方图设置你喜爱的颜色。\n绘制vs的条形图，纵轴代表频数。\n绘制am的条形图，条形水平放置。\n绘制am的饼图。\n绘制wt的箱线图。\n将汽车分为手动挡和自动挡两组，绘制这两个组别wt的箱线图，并设置你喜爱的颜色。\n将汽车分为手动挡和自动挡两组，绘制这两个组别qsec的箱线图，并设置你喜爱的颜色。"
+  },
+  {
+    "objectID": "base_graph_tool_solutions.html#第1题",
+    "href": "base_graph_tool_solutions.html#第1题",
+    "title": "3 习题答案 —— 基础图形工具",
+    "section": "第1题",
+    "text": "第1题\n绘制下列向量（序列）的直方图,为直方图填充你喜爱的颜色。\n\n生成一个服从均匀分布的向量（序列），该向量包含1000个值。\n\n\nset.seed(123)\nx &lt;- runif(1000)\nhist(x, breaks = 20,col = 5,\n     main = \"Histogram of U(0,1)\",\n     ylim = c(0,80),\n     yaxt = \"n\"\n     )\n\n\n# 设置 Y 轴刻度\naxis(side = 2, las = 1,at = seq(0, 80, 20), \n     labels = seq(0, 80, 20),font = 0.5)"
+  },
+  {
+    "objectID": "base_graph_tool_solutions.html#第2题",
+    "href": "base_graph_tool_solutions.html#第2题",
+    "title": "3 习题答案 —— 基础图形工具",
+    "section": "第2题",
+    "text": "第2题\n\n生成一个服从标准正态分布的向量（序列），该向量包含1000个值。\n\n\nset.seed(123)\nx &lt;- rnorm(1000)\nhist(x, main = \"Histogram of N(0,1)\", col = 5,\n     ylim = c(0,240),\n     xlim = c(-4,4),\n     yaxt = \"n\")\n\n# 设置 Y 轴刻度\naxis(side = 2,las = 1, at = seq(0, 240, 20), \n     labels = seq(0, 240, 20),font = 0.5)"
+  },
+  {
+    "objectID": "base_graph_tool_solutions.html#第3题",
+    "href": "base_graph_tool_solutions.html#第3题",
+    "title": "3 习题答案 —— 基础图形工具",
+    "section": "第3题",
+    "text": "第3题\n\n生成一个服从均值为80，标准差为5的正态分布的向量（序列），该向量包含1000个值。\n\n\nset.seed(123)\nx &lt;- rnorm(1000, 80, 5)\nhist(x, main = \"Histogram of N(80,5)\", col = 5,\n     ylim = c(0,240),\n     xlim = c(60,100),\n     yaxt = \"n\")\n\n# 设置 Y 轴刻度\naxis(side = 2,las = 1, at = seq(0, 240, 40), \n     labels = seq(0, 240, 40),font = 0.5)"
+  },
+  {
+    "objectID": "base_graph_tool_solutions.html#第4题",
+    "href": "base_graph_tool_solutions.html#第4题",
+    "title": "3 习题答案 —— 基础图形工具",
+    "section": "第4题",
+    "text": "第4题\n\n生成一个服从自由度为5的卡方分布的向量（序列），该向量包含1000个值 。\n\n\nset.seed(123)\nx &lt;- rchisq(1000, 5)\nhist(x, col = 5, breaks = 20,\n     main = expression(paste(\"Histogram of \",chi^2, \"(5)\")), \n     ylim = c(0,200),\n     xlim = c(0,20),\n     yaxt = \"n\")\n\n# 设置 Y 轴刻度\naxis(side = 2, las = 1,at = seq(0, 200,20), \n     labels = seq(0, 200, 20),font = 0.5)"
+  },
+  {
+    "objectID": "base_graph_tool_solutions.html#第5题",
+    "href": "base_graph_tool_solutions.html#第5题",
+    "title": "3 习题答案 —— 基础图形工具",
+    "section": "第5题",
+    "text": "第5题\n\n生成一个服从自由度为5的t分布的向量（序列），该向量包含1000个值。\n\n\nset.seed(123)\nx &lt;- rt(1000, 5)\nhist(x, main = \"Histogram of t(5)\", col = 5,\n     ylim = c(0,200),\n     xlim = c(-6,6),\n     breaks = 20,\n     yaxt = \"n\")\n\n# 设置 Y 轴刻度\naxis(side = 2, las = 1,at = seq(0, 200, 40), \n     labels = seq(0, 200, 40),font = 0.5)"
+  },
+  {
+    "objectID": "base_graph_tool_solutions.html#第6题",
+    "href": "base_graph_tool_solutions.html#第6题",
+    "title": "3 习题答案 —— 基础图形工具",
+    "section": "第6题",
+    "text": "第6题\n\n生成一个服从F(5,10)分布的向量（序列），该向量包含1000个值。\n\n\nset.seed(123)\nx &lt;- rf(1000, 5,10)\nhist(x,breaks = 50,col = 5,\n     main = \"Histogram of F(5,10)\", \n     ylim = c(0,350),\n     xlim = c(0,17),\n     yaxt = \"n\")\n\n# 设置 X 轴刻度\naxis(side = 1,las = 1, at = seq(0, 17, 1), \n     labels = seq(0, 17, 1),font = 0.5)\n\n# 设置 Y轴刻度\naxis(side = 2,las = 1, at = seq(0, 350, by = 50), \n     labels = seq(0, 350, by = 50),font = 0.5)"
+  },
+  {
+    "objectID": "base_graph_tool_solutions.html#第1题-1",
+    "href": "base_graph_tool_solutions.html#第1题-1",
+    "title": "3 习题答案 —— 基础图形工具",
+    "section": "第1题",
+    "text": "第1题\n\n绘制qsec的直方图（纵轴代表频数），为直方图设置标题，为横轴纵轴设置合理的刻度范围，将组距设置为2， 为直方图设置你喜爱的颜色。\n\n\nmin(mtcars$qsec)\n\n[1] 14.5\n\nmax(mtcars$qsec)\n\n[1] 22.9\n\nqsec.hist &lt;- hist(mtcars$qsec, breaks = seq(14,23,1), col =5,\n     xlim = c(14, 24),\n     ylim = c(0,15),\n     main = \"Histogram of 1/4 Mile Time\",\n     xlab = \"Seconds\",\n     ylab = \"Freq\",\n     yaxt = \"n\") # 不显示Y轴刻度\n\n# 设置X轴刻度\naxis(las = 1,   # 设置标签方向\n     side = 1,  # 设置刻度位置, 1表示X轴, 2表示Y轴, 3表示上X轴, 4表示右Y轴\n     at = c(14:24), # 设置刻度位置\n     labels = c(14:24),# 设置刻度标签\n     font = 0.5) # 设置刻度标签字体大小\n\n# 设置 Y轴刻度\naxis(side = 2, las = 1,at = c(1:12), \n     labels = c(1:12),font = 0.5)\n\ntext(qsec.hist$mids, # 设置标签横坐标\n     qsec.hist$counts + 1, # 设置标签纵坐标\n     label = qsec.hist$counts, # 设置标签内容\n     cex = 0.8) # 设置标签字体大小"
+  },
+  {
+    "objectID": "base_graph_tool_solutions.html#第2题-1",
+    "href": "base_graph_tool_solutions.html#第2题-1",
+    "title": "3 习题答案 —— 基础图形工具",
+    "section": "第2题",
+    "text": "第2题\n\n绘制qsec的频率直方图（纵轴代表频率），为横轴纵轴设置合理的刻度范围，在该图中添加一条概率密度曲线，为概率密度曲线设置你喜爱的颜色。\n\n\nqsec.hist &lt;- hist(mtcars$qsec, \n                  breaks = seq(14,23,1), # 设置组距\n                  col =5, # 设置颜色\n                  freq = F, # 设置为频率直方图\n                  xlim = c(14,24), \n                  ylim = c(0,0.4),\n                  main = \"Histogram of 1/4 Mile Time\",\n                  xlab = \"QSEC\",\n                  yaxt = \"n\") # 不显示Y轴刻度\n\nlines(density(mtcars$qsec), # 添加概率密度曲线\n      lwd = 2, # 设置线宽\n      col = 2)\n\n# 设置Y轴刻度\naxis(side = 2, \n     las = 1,\n     at = seq(0,0.4,0.1), # 设置刻度位置\n     labels = seq(0,0.4,0.1), # 设置刻度标签\n     font = 0.5)\n\ntext(qsec.hist$mids, # 设置标签横坐标\n     qsec.hist$density + 0.02, # 设置标签纵坐标\n     label = qsec.hist$counts, # 设置标签内容\n     cex = 0.8)"
+  },
+  {
+    "objectID": "base_graph_tool_solutions.html#第3题-1",
+    "href": "base_graph_tool_solutions.html#第3题-1",
+    "title": "3 习题答案 —— 基础图形工具",
+    "section": "第3题",
+    "text": "第3题\n\n绘制wt的直方图（纵轴代表频数），为横轴纵轴设置合理的刻度范围，设置图形标题，为直方图设置你喜爱的颜色。\n\n\n#查看mtcars$wt最大值和最小值，以便设置合理的刻度范围\nmin(mtcars$wt)\n\n[1] 1.513\n\nmax(mtcars$wt)\n\n[1] 5.424\n\nwt.hist &lt;- hist(mtcars$wt, \n                breaks = seq(1,6,1), \n                col =5,\n                xlim = c(1,6),\n                ylim = c(0,18),\n                main = \"Histogram of Weight (1000 lbs)\",\n                xlab = \"Weight\",\n                yaxt = \"n\") # 不显示Y轴刻度\n\n# 设置 Y轴刻度\naxis(side = 2, # 2代表Y轴\n     las = 1, # 设置标签方向\n     at = seq(0,18,3), # 设置刻度位置\n     labels = seq(0,18,3), # 设置刻度标签，通常与刻度位置一一对应\n     font = 0.5)\n\ntext(wt.hist$mids, # 设置标签横坐标\n     wt.hist$counts + 1, # 设置标签纵坐标\n     label = wt.hist$counts, #\n     cex = 0.9) # 设置标签字体大小"
+  },
+  {
+    "objectID": "base_graph_tool_solutions.html#第4题-1",
+    "href": "base_graph_tool_solutions.html#第4题-1",
+    "title": "3 习题答案 —— 基础图形工具",
+    "section": "第4题",
+    "text": "第4题\n\n绘制vs的条形图，纵轴代表频数。\n\n\nvs.table &lt;- table(mtcars$vs) # 统计vs的频数\n\nvs.barplot &lt;- barplot(vs.table, # 绘制条形图\n                      col = c(3,4), # 设置两个条形的颜色分别为3和4\n                      ylim = c(0,20), # 设置Y轴刻度范围\n                      density = 20, # 设置条纹填充密度\n                      angle = 45, # 设置条纹填充角度\n                      width = 0.1, # 设置条形宽度\n                      space = 0.5, # 设置条形间距\n                      main = \"Barplot of Engine\",\n                      xlab = \"Type of Engine\", \n                      ylab = \"Frequency\",\n                      names.arg = c(\"V-shaped\", \"Straight\"), # 设置条形标签\n                      las = 1) # 设置标签方向\n\ntext(vs.barplot, # 设置标签横坐标\n     vs.table+1.5, # 设置标签纵坐标， +1.5是为了让标签显示在条形上方\n     labels = vs.table) # 设置标签内容"
+  },
+  {
+    "objectID": "base_graph_tool_solutions.html#第5题-1",
+    "href": "base_graph_tool_solutions.html#第5题-1",
+    "title": "3 习题答案 —— 基础图形工具",
+    "section": "第5题",
+    "text": "第5题\n\n绘制am的条形图，条形水平放置。\n\n\nam.table &lt;- table(mtcars$am) # 统计am的频数\n\nam.barplot &lt;- barplot(am.table, \n                      col = c(3,4), # 设置两个条形的颜色分别为3和4\n                      ylim = c(0,2), # 设置Y轴刻度范围\n                      xlim = c(0,20),# 设置X轴刻度范围\n                      names.arg = c(\"V-shaped\", \"Straight\"), # 设置条形标签\n                      horiz = T, # 设置条形水平放置\n                      las = 1, # 设置标签方向\n                      cex.axis = 0.8, # 设置坐标轴标签字体大小\n                      cex.names = 0.8, # 设置条形标签字体大小\n                      cex.lab = 0.8, # 设置坐标轴标签字体大小\n                      xlab = \"Freq\", # 设置X轴标签\n                      main = \"\", # 设置图形标题为空，删掉图形默认标题\n                      width = c(0.4,0.4) # 设置条形宽度\n                      )\n\n\ntext(am.table+0.7, # 设置标签横坐标，+0.7 是为了让标签显示在条形右侧\n     am.barplot, # 设置标签纵坐标\n     labels = am.table, # 设置标签内容\n     cex = 0.8) # 设置标签字体大小\n\ntitle(main = \"Barplot of Transmission\", # 设置图形标题\n      line = -5) # 设置标题位置"
+  },
+  {
+    "objectID": "base_graph_tool_solutions.html#第6题-1",
+    "href": "base_graph_tool_solutions.html#第6题-1",
+    "title": "3 习题答案 —— 基础图形工具",
+    "section": "第6题",
+    "text": "第6题\n\n绘制am的饼图。\n\n\n#计算engine各个类别的频数\nam.table &lt;- table(mtcars$am) # 统计am的频数\n\n#计算am各个类别的百分比\nam.percent &lt;- table(mtcars$am)/sum(table(mtcars$am))*100 # 计算百分比\n\n# 定义标签\nlabel1 &lt;- c(\"Automatic\",\"Manual\") # 设置标签label1内容\nlabel2 &lt;- paste0(round(am.percent,2),\"%\") # 设置标签label2内容\n#设置扇区角度\npie(am.percent, \n    main = \"Pie Chart of Transmission\",\n    init.angle=90, # 设置初始角度\n    col=c(4,5), # 设置扇区颜色\n    labels=paste(paste(label1,label2))) # 设置标签内容"
+  },
+  {
+    "objectID": "base_graph_tool_solutions.html#第7题",
+    "href": "base_graph_tool_solutions.html#第7题",
+    "title": "3 习题答案 —— 基础图形工具",
+    "section": "第7题",
+    "text": "第7题\n\n绘制wt的箱线图。\n\n\nwt.bp &lt;- boxplot(mtcars$wt, \n                 horizontal = T,  # 设置箱线图水平放置\n                 col = 5,  # 设置箱线图颜色\n                 main = \"Boxplot of Weight\",\n                 height = 2, # 设置箱线图高度\n                 xaxt = \"n\") # 不显示X轴刻度\n\naxis(side = 1, # 1代表X轴\n     at = seq(1.5,6,0.5), # 设置刻度位置\n     labels = seq(1.5,6,0.5)) # 设置刻度标签\n\n# 在箱线图上添加标签\ntext(x = wt.bp$stats[1], # 标记最小值，设置该标签横坐标\n     y = 0.8, # 设置标签纵坐标\n     labels =wt.bp$stats[1], # 设置标签内容\n     cex = 0.8) #\n\ntext(x = wt.bp$stats[2]-0.1, # 标记Q1，设置该标签横坐标，-0.1代表  是为了让标签显示在箱线左侧\n     y = 0.7, # 设置标签纵坐标\n     labels =paste(\"Q1 =\",round(wt.bp$stats[2],3)), # 设置标签内容\n     cex = 0.8) # 设置标签字体大小\n\ntext(x = wt.bp$stats[3]-0.1, # 标记中位数，设置该标签横坐标，-0.1代表  是为了让标签显示在箱线左侧\n     y = 1.3, \n     labels =paste(\"Median =\",wt.bp$stats[3]), \n     cex = 0.8)\n\ntext(x = wt.bp$stats[4]+0.1, # 标记Q3，设置该标签横坐标，+0.1代表  是为了让标签显示在箱线右侧\n     y = 0.7, \n     labels =paste(\"Q3 =\", wt.bp$stats[4]), \n     cex = 0.8)\n\ntext(x = wt.bp$stats[5], # 标记除了outlier之外的最大值，设置该标签横坐标\n     y = 0.8, \n     labels =wt.bp$stats[5], \n     cex = 0.8)\n\ntext(x = max(mtcars$wt), # 标记最大值，设置该标签横坐标\n     y = 1.1, \n     labels =max(mtcars$wt), cex = 0.8)\n\n\n\n\n\n\n\nsort(mtcars$wt)\n\n [1] 1.513 1.615 1.835 1.935 2.140 2.200 2.320 2.465 2.620 2.770 2.780 2.875\n[13] 3.150 3.170 3.190 3.215 3.435 3.440 3.440 3.440 3.460 3.520 3.570 3.570\n[25] 3.730 3.780 3.840 3.845 4.070 5.250 5.345 5.424"
+  },
+  {
+    "objectID": "base_graph_tool_solutions.html#第8题",
+    "href": "base_graph_tool_solutions.html#第8题",
+    "title": "3 习题答案 —— 基础图形工具",
+    "section": "第8题",
+    "text": "第8题\n\n将汽车分为手动挡和自动挡两组，绘制这两个组别wt的箱线图，并设置你喜爱的颜色。\n\n\nboxplot(mtcars$wt ~ mtcars$am, # 按am分组，绘制wt的箱线图\n        horizontal = T, # 设置箱线图水平放置\n        col = c(\"cyan\", \"purple\"), # 设置箱线图颜色\n        main = \"Boxplot of Weight\",\n        ylab = \"\", # 设置Y轴标签为空\n        xaxt = \"n\", # 不显示X轴刻度\n        yaxt = \"n\") # 不显示Y轴刻度\n\naxis(side = 1, # 1代表X轴\n     at = seq(1.5,6,0.5), # 设置刻度位置\n     labels = seq(1.5,6,0.5), # 设置刻度标签\n     cex.axis  = 0.8, # 设置刻度标签字体大小\n     font = 2) # 设置刻度标签字体\n\naxis(side = 2, # 2代表Y轴\n     las = 1, # 设置刻度标签方向\n     at = c(1,2), # 设置刻度位置\n     labels = c(\"automatic\",\"manual\"), # 设置刻度标签\n     cex.axis  = 0.8, # 设置刻度标签字体大小\n     font = 2) # 设置刻度标签字体"
+  },
+  {
+    "objectID": "base_graph_tool_solutions.html#第9题",
+    "href": "base_graph_tool_solutions.html#第9题",
+    "title": "3 习题答案 —— 基础图形工具",
+    "section": "第9题",
+    "text": "第9题\n\n将汽车分为手动挡和自动挡两组，绘制这两个组别qsec的箱线图，并设置你喜爱的颜色。\n\n\nboxplot(mtcars$qsec ~ mtcars$am, # 按am分组，绘制qsec的箱线图\n        horizontal = T, # 设置箱线图水平放置\n        col = c(4,5), # 设置箱线图颜色\n        main = \"Boxplot of 1/4 Miles Time\", # 设置箱线图标题\n        ylab = \"\", # 设置Y轴标签为空\n        xaxt = \"n\", # 不显示X轴刻度\n        yaxt = \"n\") # 不显示Y轴刻度\n\naxis(side = 1, # 1代表X轴\n     at = c(14:23), # 设置刻度位置\n     labels = c(14:23), # 设置刻度标签\n     cex.axis  = 0.8, # 设置刻度标签字体大小\n     font = 2) # 设置刻度标签字体\n\naxis(side = 2, # 2代表Y轴\n     las = 1,  #  设置刻度标签方向\n     at = c(1,2), # 设置刻度位置\n     labels = c(\"automatic\",\"manual\"), # 设置刻度标签\n     cex.axis  = 0.8, # 设置刻度标签字体大小\n     font = 2) # 设置刻度标签字体\n\n\n\n\n\n\n\nsort(mtcars$qsec)\n\n [1] 14.50 14.60 15.41 15.50 15.84 16.46 16.70 16.87 16.90 17.02 17.02 17.05\n[13] 17.30 17.40 17.42 17.60 17.82 17.98 18.00 18.30 18.52 18.60 18.61 18.90\n[25] 18.90 19.44 19.47 19.90 20.00 20.01 20.22 22.90"
+  },
+  {
+    "objectID": "L3solution.html",
+    "href": "L3solution.html",
+    "title": "L3习题答案",
+    "section": "",
+    "text": "Loading required package: sysfonts\n\n\nLoading required package: showtextdb"
+  },
+  {
+    "objectID": "L3solution.html#第1题",
+    "href": "L3solution.html#第1题",
+    "title": "L3习题答案",
+    "section": "1.1 第1题",
+    "text": "1.1 第1题\n绘制下列向量（序列）的直方图,为直方图填充你喜爱的颜色。\n\n生成一个服从均匀分布的向量（序列），该向量包含1000个值。\n\n\nset.seed(123)\nx &lt;- runif(1000)\nhist(x, breaks = 20,col = 5,\n     main = \"Histogram of U(0,1)\",\n     ylim = c(0,80),\n     yaxt = \"n\"\n     )\n\n\n# 设置 Y 轴刻度\naxis(side = 2, las = 1,at = seq(0, 80, 20), \n     labels = seq(0, 80, 20),font = 0.5)"
+  },
+  {
+    "objectID": "L3solution.html#第2题",
+    "href": "L3solution.html#第2题",
+    "title": "L3习题答案",
+    "section": "1.2 第2题",
+    "text": "1.2 第2题\n\n生成一个服从标准正态分布的向量（序列），该向量包含1000个值。\n\n\nset.seed(123)\nx &lt;- rnorm(1000)\nhist(x, main = \"Histogram of N(0,1)\", col = 5,\n     ylim = c(0,240),\n     xlim = c(-4,4),\n     yaxt = \"n\")\n\n# 设置 Y 轴刻度\naxis(side = 2,las = 1, at = seq(0, 240, 20), \n     labels = seq(0, 240, 20),font = 0.5)"
+  },
+  {
+    "objectID": "L3solution.html#第3题",
+    "href": "L3solution.html#第3题",
+    "title": "L3习题答案",
+    "section": "1.3 第3题",
+    "text": "1.3 第3题\n\n生成一个服从均值为80，标准差为5的正态分布的向量（序列），该向量包含1000个值。\n\n\nset.seed(123)\nx &lt;- rnorm(1000, 80, 5)\nhist(x, main = \"Histogram of N(80,5)\", col = 5,\n     ylim = c(0,240),\n     xlim = c(60,100),\n     yaxt = \"n\")\n\n# 设置 Y 轴刻度\naxis(side = 2,las = 1, at = seq(0, 240, 40), \n     labels = seq(0, 240, 40),font = 0.5)"
+  },
+  {
+    "objectID": "L3solution.html#第4题",
+    "href": "L3solution.html#第4题",
+    "title": "L3习题答案",
+    "section": "1.4 第4题",
+    "text": "1.4 第4题\n\n生成一个服从自由度为5的卡方分布的向量（序列），该向量包含1000个值 。\n\n\nset.seed(123)\nx &lt;- rchisq(1000, 5)\nhist(x, col = 5, breaks = 20,\n     main = expression(paste(\"Histogram of \",chi^2, \"(5)\")), \n     ylim = c(0,200),\n     xlim = c(0,20),\n     yaxt = \"n\")\n\n# 设置 Y 轴刻度\naxis(side = 2, las = 1,at = seq(0, 200,20), \n     labels = seq(0, 200, 20),font = 0.5)"
+  },
+  {
+    "objectID": "L3solution.html#第5题",
+    "href": "L3solution.html#第5题",
+    "title": "L3习题答案",
+    "section": "1.5 第5题",
+    "text": "1.5 第5题\n\n生成一个服从自由度为5的t分布的向量（序列），该向量包含1000个值。\n\n\nset.seed(123)\nx &lt;- rt(1000, 5)\nhist(x, main = \"Histogram of t(5)\", col = 5,\n     ylim = c(0,200),\n     xlim = c(-6,6),\n     breaks = 20,\n     yaxt = \"n\")\n\n# 设置 Y 轴刻度\naxis(side = 2, las = 1,at = seq(0, 200, 40), \n     labels = seq(0, 200, 40),font = 0.5)"
+  },
+  {
+    "objectID": "L3solution.html#第6题",
+    "href": "L3solution.html#第6题",
+    "title": "L3习题答案",
+    "section": "1.6 第6题",
+    "text": "1.6 第6题\n\n生成一个服从F(5,10)分布的向量（序列），该向量包含1000个值。\n\n\nset.seed(123)\nx &lt;- rf(1000, 5,10)\nhist(x,breaks = 50,col = 5,\n     main = \"Histogram of F(5,10)\", \n     ylim = c(0,350),\n     xlim = c(0,17),\n     yaxt = \"n\")\n\n# 设置 X 轴刻度\naxis(side = 1,las = 1, at = seq(0, 17, 1), \n     labels = seq(0, 17, 1),font = 0.5)\n\n# 设置 Y轴刻度\naxis(side = 2,las = 1, at = seq(0, 350, by = 50), \n     labels = seq(0, 350, by = 50),font = 0.5)"
+  },
+  {
+    "objectID": "L3solution.html#第1题-1",
+    "href": "L3solution.html#第1题-1",
+    "title": "L3习题答案",
+    "section": "2.1 第1题",
+    "text": "2.1 第1题\n\n绘制qsec的直方图（纵轴代表频数），为直方图设置标题，为横轴纵轴设置合理的刻度范围，将组距设置为2， 为直方图设置你喜爱的颜色。\n\n\nmin(mtcars$qsec)\n\n[1] 14.5\n\nmax(mtcars$qsec)\n\n[1] 22.9\n\nqsec.hist &lt;- hist(mtcars$qsec, breaks = seq(14,23,1), col =5,\n     xlim = c(14, 24),\n     ylim = c(0,15),\n     main = \"Histogram of 1/4 Mile Time\",\n     xlab = \"Seconds\",\n     ylab = \"Freq\",\n     yaxt = \"n\") # 不显示Y轴刻度\n\n# 设置X轴刻度\naxis(las = 1,   # 设置标签方向\n     side = 1,  # 设置刻度位置, 1表示X轴, 2表示Y轴, 3表示上X轴, 4表示右Y轴\n     at = c(14:24), # 设置刻度位置\n     labels = c(14:24),# 设置刻度标签\n     font = 0.5) # 设置刻度标签字体大小\n\n# 设置 Y轴刻度\naxis(side = 2, las = 1,at = c(1:12), \n     labels = c(1:12),font = 0.5)\n\ntext(qsec.hist$mids, # 设置标签横坐标\n     qsec.hist$counts + 1, # 设置标签纵坐标\n     label = qsec.hist$counts, # 设置标签内容\n     cex = 0.8) # 设置标签字体大小"
+  },
+  {
+    "objectID": "L3solution.html#第2题-1",
+    "href": "L3solution.html#第2题-1",
+    "title": "L3习题答案",
+    "section": "2.2 第2题",
+    "text": "2.2 第2题\n\n绘制qsec的频率直方图（纵轴代表频率），为横轴纵轴设置合理的刻度范围，在该图中添加一条概率密度曲线，为概率密度曲线设置你喜爱的颜色。\n\n\nqsec.hist &lt;- hist(mtcars$qsec, \n                  breaks = seq(14,23,1), # 设置组距\n                  col =5, # 设置颜色\n                  freq = F, # 设置为频率直方图\n                  xlim = c(14,24), \n                  ylim = c(0,0.4),\n                  main = \"Histogram of 1/4 Mile Time\",\n                  xlab = \"QSEC\",\n                  yaxt = \"n\") # 不显示Y轴刻度\n\nlines(density(mtcars$qsec), # 添加概率密度曲线\n      lwd = 2, # 设置线宽\n      col = 2)\n\n# 设置Y轴刻度\naxis(side = 2, \n     las = 1,\n     at = seq(0,0.4,0.1), # 设置刻度位置\n     labels = seq(0,0.4,0.1), # 设置刻度标签\n     font = 0.5)\n\ntext(qsec.hist$mids, # 设置标签横坐标\n     qsec.hist$density + 0.02, # 设置标签纵坐标\n     label = qsec.hist$counts, # 设置标签内容\n     cex = 0.8)"
+  },
+  {
+    "objectID": "L3solution.html#第3题-1",
+    "href": "L3solution.html#第3题-1",
+    "title": "L3习题答案",
+    "section": "2.3 第3题",
+    "text": "2.3 第3题\n\n绘制wt的直方图（纵轴代表频数），为横轴纵轴设置合理的刻度范围，设置图形标题，为直方图设置你喜爱的颜色。\n\n\n#查看mtcars$wt最大值和最小值，以便设置合理的刻度范围\nmin(mtcars$wt)\n\n[1] 1.513\n\nmax(mtcars$wt)\n\n[1] 5.424\n\nwt.hist &lt;- hist(mtcars$wt, \n                breaks = seq(1,6,1), \n                col =5,\n                xlim = c(1,6),\n                ylim = c(0,18),\n                main = \"Histogram of Weight (1000 lbs)\",\n                xlab = \"Weight\",\n                yaxt = \"n\") # 不显示Y轴刻度\n\n# 设置 Y轴刻度\naxis(side = 2, # 2代表Y轴\n     las = 1, # 设置标签方向\n     at = seq(0,18,3), # 设置刻度位置\n     labels = seq(0,18,3), # 设置刻度标签，通常与刻度位置一一对应\n     font = 0.5)\n\ntext(wt.hist$mids, # 设置标签横坐标\n     wt.hist$counts + 1, # 设置标签纵坐标\n     label = wt.hist$counts, #\n     cex = 0.9) # 设置标签字体大小"
+  },
+  {
+    "objectID": "L3solution.html#第4题-1",
+    "href": "L3solution.html#第4题-1",
+    "title": "L3习题答案",
+    "section": "2.4 第4题",
+    "text": "2.4 第4题\n\n绘制vs的条形图，纵轴代表频数。\n\n\nvs.table &lt;- table(mtcars$vs) # 统计vs的频数\n\nvs.barplot &lt;- barplot(vs.table, # 绘制条形图\n                      col = c(3,4), # 设置两个条形的颜色分别为3和4\n                      ylim = c(0,20), # 设置Y轴刻度范围\n                      density = 20, # 设置条纹填充密度\n                      angle = 45, # 设置条纹填充角度\n                      width = 0.1, # 设置条形宽度\n                      space = 0.5, # 设置条形间距\n                      main = \"Barplot of Engine\",\n                      xlab = \"Type of Engine\", \n                      ylab = \"Frequency\",\n                      names.arg = c(\"V-shaped\", \"Straight\"), # 设置条形标签\n                      las = 1) # 设置标签方向\n\ntext(vs.barplot, # 设置标签横坐标\n     vs.table+1.5, # 设置标签纵坐标， +1.5是为了让标签显示在条形上方\n     labels = vs.table) # 设置标签内容"
+  },
+  {
+    "objectID": "L3solution.html#第5题-1",
+    "href": "L3solution.html#第5题-1",
+    "title": "L3习题答案",
+    "section": "2.5 第5题",
+    "text": "2.5 第5题\n\n绘制am的条形图，条形水平放置。\n\n\nam.table &lt;- table(mtcars$am) # 统计am的频数\n\nam.barplot &lt;- barplot(am.table, \n                      col = c(3,4), # 设置两个条形的颜色分别为3和4\n                      ylim = c(0,2), # 设置Y轴刻度范围\n                      xlim = c(0,20),# 设置X轴刻度范围\n                      names.arg = c(\"V-shaped\", \"Straight\"), # 设置条形标签\n                      horiz = T, # 设置条形水平放置\n                      las = 1, # 设置标签方向\n                      cex.axis = 0.8, # 设置坐标轴标签字体大小\n                      cex.names = 0.8, # 设置条形标签字体大小\n                      cex.lab = 0.8, # 设置坐标轴标签字体大小\n                      xlab = \"Freq\", # 设置X轴标签\n                      main = \"\", # 设置图形标题为空，删掉图形默认标题\n                      width = c(0.4,0.4) # 设置条形宽度\n                      )\n\n\ntext(am.table+0.7, # 设置标签横坐标，+0.7 是为了让标签显示在条形右侧\n     am.barplot, # 设置标签纵坐标\n     labels = am.table, # 设置标签内容\n     cex = 0.8) # 设置标签字体大小\n\ntitle(main = \"Barplot of Transmission\", # 设置图形标题\n      line = -5) # 设置标题位置"
+  },
+  {
+    "objectID": "L3solution.html#第6题-1",
+    "href": "L3solution.html#第6题-1",
+    "title": "L3习题答案",
+    "section": "2.6 第6题",
+    "text": "2.6 第6题\n\n绘制am的饼图。\n\n\n#计算engine各个类别的频数\nam.table &lt;- table(mtcars$am) # 统计am的频数\n\n#计算am各个类别的百分比\nam.percent &lt;- table(mtcars$am)/sum(table(mtcars$am))*100 # 计算百分比\n\n# 定义标签\nlabel1 &lt;- c(\"Automatic\",\"Manual\") # 设置标签label1内容\nlabel2 &lt;- paste0(round(am.percent,2),\"%\") # 设置标签label2内容\n#设置扇区角度\npie(am.percent, \n    main = \"Pie Chart of Transmission\",\n    init.angle=90, # 设置初始角度\n    col=c(4,5), # 设置扇区颜色\n    labels=paste(paste(label1,label2))) # 设置标签内容"
+  },
+  {
+    "objectID": "L3solution.html#第7题",
+    "href": "L3solution.html#第7题",
+    "title": "L3习题答案",
+    "section": "2.7 第7题",
+    "text": "2.7 第7题\n\n绘制wt的箱线图。\n\n\nwt.bp &lt;- boxplot(mtcars$wt, \n                 horizontal = T,  # 设置箱线图水平放置\n                 col = 5,  # 设置箱线图颜色\n                 main = \"Boxplot of Weight\",\n                 height = 2, # 设置箱线图高度\n                 xaxt = \"n\") # 不显示X轴刻度\n\naxis(side = 1, # 1代表X轴\n     at = seq(1.5,6,0.5), # 设置刻度位置\n     labels = seq(1.5,6,0.5)) # 设置刻度标签\n\n# 在箱线图上添加标签\ntext(x = wt.bp$stats[1], # 标记最小值，设置该标签横坐标\n     y = 0.8, # 设置标签纵坐标\n     labels =wt.bp$stats[1], # 设置标签内容\n     cex = 0.8) #\n\ntext(x = wt.bp$stats[2]-0.1, # 标记Q1，设置该标签横坐标，-0.1代表  是为了让标签显示在箱线左侧\n     y = 0.7, # 设置标签纵坐标\n     labels =paste(\"Q1 =\",round(wt.bp$stats[2],3)), # 设置标签内容\n     cex = 0.8) # 设置标签字体大小\n\ntext(x = wt.bp$stats[3]-0.1, # 标记中位数，设置该标签横坐标，-0.1代表  是为了让标签显示在箱线左侧\n     y = 1.3, \n     labels =paste(\"Median =\",wt.bp$stats[3]), \n     cex = 0.8)\n\ntext(x = wt.bp$stats[4]+0.1, # 标记Q3，设置该标签横坐标，+0.1代表  是为了让标签显示在箱线右侧\n     y = 0.7, \n     labels =paste(\"Q3 =\", wt.bp$stats[4]), \n     cex = 0.8)\n\ntext(x = wt.bp$stats[5], # 标记除了outlier之外的最大值，设置该标签横坐标\n     y = 0.8, \n     labels =wt.bp$stats[5], \n     cex = 0.8)\n\ntext(x = max(mtcars$wt), # 标记最大值，设置该标签横坐标\n     y = 1.1, \n     labels =max(mtcars$wt), cex = 0.8)\n\n\n\n\n\n\n\nsort(mtcars$wt)\n\n [1] 1.513 1.615 1.835 1.935 2.140 2.200 2.320 2.465 2.620 2.770 2.780 2.875\n[13] 3.150 3.170 3.190 3.215 3.435 3.440 3.440 3.440 3.460 3.520 3.570 3.570\n[25] 3.730 3.780 3.840 3.845 4.070 5.250 5.345 5.424"
+  },
+  {
+    "objectID": "L3solution.html#第8题",
+    "href": "L3solution.html#第8题",
+    "title": "L3习题答案",
+    "section": "2.8 第8题",
+    "text": "2.8 第8题\n\n将汽车分为手动挡和自动挡两组，绘制这两个组别wt的箱线图，并设置你喜爱的颜色。\n\n\nboxplot(mtcars$wt ~ mtcars$am, # 按am分组，绘制wt的箱线图\n        horizontal = T, # 设置箱线图水平放置\n        col = c(\"cyan\", \"purple\"), # 设置箱线图颜色\n        main = \"Boxplot of Weight\",\n        ylab = \"\", # 设置Y轴标签为空\n        xaxt = \"n\", # 不显示X轴刻度\n        yaxt = \"n\") # 不显示Y轴刻度\n\naxis(side = 1, # 1代表X轴\n     at = seq(1.5,6,0.5), # 设置刻度位置\n     labels = seq(1.5,6,0.5), # 设置刻度标签\n     cex.axis  = 0.8, # 设置刻度标签字体大小\n     font = 2) # 设置刻度标签字体\n\naxis(side = 2, # 2代表Y轴\n     las = 1, # 设置刻度标签方向\n     at = c(1,2), # 设置刻度位置\n     labels = c(\"automatic\",\"manual\"), # 设置刻度标签\n     cex.axis  = 0.8, # 设置刻度标签字体大小\n     font = 2) # 设置刻度标签字体"
+  },
+  {
+    "objectID": "L3solution.html#第9题",
+    "href": "L3solution.html#第9题",
+    "title": "L3习题答案",
+    "section": "2.9 第9题",
+    "text": "2.9 第9题\n\n将汽车分为手动挡和自动挡两组，绘制这两个组别qsec的箱线图，并设置你喜爱的颜色。\n\n\nboxplot(mtcars$qsec ~ mtcars$am, # 按am分组，绘制qsec的箱线图\n        horizontal = T, # 设置箱线图水平放置\n        col = c(4,5), # 设置箱线图颜色\n        main = \"Boxplot of 1/4 Miles Time\", # 设置箱线图标题\n        ylab = \"\", # 设置Y轴标签为空\n        xaxt = \"n\", # 不显示X轴刻度\n        yaxt = \"n\") # 不显示Y轴刻度\n\naxis(side = 1, # 1代表X轴\n     at = c(14:23), # 设置刻度位置\n     labels = c(14:23), # 设置刻度标签\n     cex.axis  = 0.8, # 设置刻度标签字体大小\n     font = 2) # 设置刻度标签字体\n\naxis(side = 2, # 2代表Y轴\n     las = 1,  #  设置刻度标签方向\n     at = c(1,2), # 设置刻度位置\n     labels = c(\"automatic\",\"manual\"), # 设置刻度标签\n     cex.axis  = 0.8, # 设置刻度标签字体大小\n     font = 2) # 设置刻度标签字体\n\n\n\n\n\n\n\nsort(mtcars$qsec)\n\n [1] 14.50 14.60 15.41 15.50 15.84 16.46 16.70 16.87 16.90 17.02 17.02 17.05\n[13] 17.30 17.40 17.42 17.60 17.82 17.98 18.00 18.30 18.52 18.60 18.61 18.90\n[25] 18.90 19.44 19.47 19.90 20.00 20.01 20.22 22.90"
+  },
+  {
+    "objectID": "L2code.html",
+    "href": "L2code.html",
+    "title": "L2code",
+    "section": "",
+    "text": "# numeric 数值型，str()查看对象的类型\na1 &lt;- c(1,2,3,4,5)\nstr(a1)\n\n num [1:5] 1 2 3 4 5\n\nstr(pi)\n\n num 3.14\n\nstr(sqrt(2))\n\n num 1.41\n\n\n\n\n\n\n# integer 整数型\na2 &lt;- 5L #L 表示该值是整数\nstr(a2)\n\n int 5\n\n# 1:5生成序列1，2，3，4，5\na3 &lt;- 1:5\nstr(a3)\n\n int [1:5] 1 2 3 4 5\n\na4 &lt;- as.numeric(a3)\nstr(a4)\n\n num [1:5] 1 2 3 4 5\n\n\n\n\n\n\nanswer &lt;- c(TRUE,TRUE,TRUE,FALSE,TRUE,FALSE) \n#查看answer的类型\nstr(answer) \n\n logi [1:6] TRUE TRUE TRUE FALSE TRUE FALSE\n\n#逻辑型向量求和，TRUE = 1, FALSE = 0\nsum(answer) \n\n[1] 4\n\n#逻辑型向量求平均，TRUE的比例\nmean(answer) \n\n[1] 0.6666667\n\n#！逻辑值取反\n!answer\n\n[1] FALSE FALSE FALSE  TRUE FALSE  TRUE\n\n\n\n\n\n\n# data.frame()创建数据框\ndf &lt;- data.frame(\n  id = 1:50,\n  age = round(rnorm(50,40,5)),\n  edu = c(rep(\"highschool\",20),\n          rep(\"bachelor\", 15),\n          rep(\"master\",15)),\n  sex = ifelse(rbinom(50, 1, 0.6) == 1, \n               \"male\", \"female\")\n)\n\nhead(df) #显示df的前六行\n\n  id age        edu    sex\n1  1  44 highschool   male\n2  2  32 highschool   male\n3  3  35 highschool female\n4  4  44 highschool female\n5  5  42 highschool   male\n6  6  38 highschool female\n\ndf$edu #edu是字符串，有双引号\n\n [1] \"highschool\" \"highschool\" \"highschool\" \"highschool\" \"highschool\"\n [6] \"highschool\" \"highschool\" \"highschool\" \"highschool\" \"highschool\"\n[11] \"highschool\" \"highschool\" \"highschool\" \"highschool\" \"highschool\"\n[16] \"highschool\" \"highschool\" \"highschool\" \"highschool\" \"highschool\"\n[21] \"bachelor\"   \"bachelor\"   \"bachelor\"   \"bachelor\"   \"bachelor\"  \n[26] \"bachelor\"   \"bachelor\"   \"bachelor\"   \"bachelor\"   \"bachelor\"  \n[31] \"bachelor\"   \"bachelor\"   \"bachelor\"   \"bachelor\"   \"bachelor\"  \n[36] \"master\"     \"master\"     \"master\"     \"master\"     \"master\"    \n[41] \"master\"     \"master\"     \"master\"     \"master\"     \"master\"    \n[46] \"master\"     \"master\"     \"master\"     \"master\"     \"master\"    \n\n\n\n\n\n\n#factor()将字符串转换为因子，默认level按字母顺序\ndf$edu &lt;- factor(df$edu) \n#查看因子df$edu的level顺序\nlevels(df$edu) \n\n[1] \"bachelor\"   \"highschool\" \"master\"    \n\n#edu是因子，没有双引号\ndf$edu \n\n [1] highschool highschool highschool highschool highschool highschool\n [7] highschool highschool highschool highschool highschool highschool\n[13] highschool highschool highschool highschool highschool highschool\n[19] highschool highschool bachelor   bachelor   bachelor   bachelor  \n[25] bachelor   bachelor   bachelor   bachelor   bachelor   bachelor  \n[31] bachelor   bachelor   bachelor   bachelor   bachelor   master    \n[37] master     master     master     master     master     master    \n[43] master     master     master     master     master     master    \n[49] master     master    \nLevels: bachelor highschool master\n\n#箱线图的排列按edu的三个组别的字母顺序\nboxplot(df$age ~ df$edu) \n\n\n\n\n\n\n\n# ordinal scale, levels = 自定义逻辑顺序\ndf$edu &lt;- factor(df$edu, \n                 levels = c(\"highschool\", \"bachelor\", \"master\"))\nlevels(df$edu)\n\n[1] \"highschool\" \"bachelor\"   \"master\"    \n\nboxplot(df$age ~ df$edu)\n\n\n\n\n\n\n\n\n\n#将数值型数据转换为因子\ndf$age_group &lt;- cut(df$age, 4)\n\n#查看因子的水平个数\nnlevels(df$age_group)\n\n[1] 4\n\n#呈现age_group和edu的列联表\ntable(df$age_group, df$edu)\n\n             \n              highschool bachelor master\n  (30,35.2]            6        2      4\n  (35.2,40.5]          8        8      6\n  (40.5,45.8]          5        3      2\n  (45.8,51]            1        2      3"
+  },
+  {
+    "objectID": "L2code.html#数值型numeric",
+    "href": "L2code.html#数值型numeric",
+    "title": "L2code",
+    "section": "",
+    "text": "# numeric 数值型，str()查看对象的类型\na1 &lt;- c(1,2,3,4,5)\nstr(a1)\n\n num [1:5] 1 2 3 4 5\n\nstr(pi)\n\n num 3.14\n\nstr(sqrt(2))\n\n num 1.41"
+  },
+  {
+    "objectID": "L2code.html#整数型integer",
+    "href": "L2code.html#整数型integer",
+    "title": "L2code",
+    "section": "",
+    "text": "# integer 整数型\na2 &lt;- 5L #L 表示该值是整数\nstr(a2)\n\n int 5\n\n# 1:5生成序列1，2，3，4，5\na3 &lt;- 1:5\nstr(a3)\n\n int [1:5] 1 2 3 4 5\n\na4 &lt;- as.numeric(a3)\nstr(a4)\n\n num [1:5] 1 2 3 4 5"
+  },
+  {
+    "objectID": "L2code.html#逻辑型logical",
+    "href": "L2code.html#逻辑型logical",
+    "title": "L2code",
+    "section": "",
+    "text": "answer &lt;- c(TRUE,TRUE,TRUE,FALSE,TRUE,FALSE) \n#查看answer的类型\nstr(answer) \n\n logi [1:6] TRUE TRUE TRUE FALSE TRUE FALSE\n\n#逻辑型向量求和，TRUE = 1, FALSE = 0\nsum(answer) \n\n[1] 4\n\n#逻辑型向量求平均，TRUE的比例\nmean(answer) \n\n[1] 0.6666667\n\n#！逻辑值取反\n!answer\n\n[1] FALSE FALSE FALSE  TRUE FALSE  TRUE"
+  },
+  {
+    "objectID": "L2code.html#字符串character",
+    "href": "L2code.html#字符串character",
+    "title": "L2code",
+    "section": "",
+    "text": "# data.frame()创建数据框\ndf &lt;- data.frame(\n  id = 1:50,\n  age = round(rnorm(50,40,5)),\n  edu = c(rep(\"highschool\",20),\n          rep(\"bachelor\", 15),\n          rep(\"master\",15)),\n  sex = ifelse(rbinom(50, 1, 0.6) == 1, \n               \"male\", \"female\")\n)\n\nhead(df) #显示df的前六行\n\n  id age        edu    sex\n1  1  44 highschool   male\n2  2  32 highschool   male\n3  3  35 highschool female\n4  4  44 highschool female\n5  5  42 highschool   male\n6  6  38 highschool female\n\ndf$edu #edu是字符串，有双引号\n\n [1] \"highschool\" \"highschool\" \"highschool\" \"highschool\" \"highschool\"\n [6] \"highschool\" \"highschool\" \"highschool\" \"highschool\" \"highschool\"\n[11] \"highschool\" \"highschool\" \"highschool\" \"highschool\" \"highschool\"\n[16] \"highschool\" \"highschool\" \"highschool\" \"highschool\" \"highschool\"\n[21] \"bachelor\"   \"bachelor\"   \"bachelor\"   \"bachelor\"   \"bachelor\"  \n[26] \"bachelor\"   \"bachelor\"   \"bachelor\"   \"bachelor\"   \"bachelor\"  \n[31] \"bachelor\"   \"bachelor\"   \"bachelor\"   \"bachelor\"   \"bachelor\"  \n[36] \"master\"     \"master\"     \"master\"     \"master\"     \"master\"    \n[41] \"master\"     \"master\"     \"master\"     \"master\"     \"master\"    \n[46] \"master\"     \"master\"     \"master\"     \"master\"     \"master\""
+  },
+  {
+    "objectID": "L2code.html#因子factor",
+    "href": "L2code.html#因子factor",
+    "title": "L2code",
+    "section": "",
+    "text": "#factor()将字符串转换为因子，默认level按字母顺序\ndf$edu &lt;- factor(df$edu) \n#查看因子df$edu的level顺序\nlevels(df$edu) \n\n[1] \"bachelor\"   \"highschool\" \"master\"    \n\n#edu是因子，没有双引号\ndf$edu \n\n [1] highschool highschool highschool highschool highschool highschool\n [7] highschool highschool highschool highschool highschool highschool\n[13] highschool highschool highschool highschool highschool highschool\n[19] highschool highschool bachelor   bachelor   bachelor   bachelor  \n[25] bachelor   bachelor   bachelor   bachelor   bachelor   bachelor  \n[31] bachelor   bachelor   bachelor   bachelor   bachelor   master    \n[37] master     master     master     master     master     master    \n[43] master     master     master     master     master     master    \n[49] master     master    \nLevels: bachelor highschool master\n\n#箱线图的排列按edu的三个组别的字母顺序\nboxplot(df$age ~ df$edu) \n\n\n\n\n\n\n\n# ordinal scale, levels = 自定义逻辑顺序\ndf$edu &lt;- factor(df$edu, \n                 levels = c(\"highschool\", \"bachelor\", \"master\"))\nlevels(df$edu)\n\n[1] \"highschool\" \"bachelor\"   \"master\"    \n\nboxplot(df$age ~ df$edu)\n\n\n\n\n\n\n\n\n\n#将数值型数据转换为因子\ndf$age_group &lt;- cut(df$age, 4)\n\n#查看因子的水平个数\nnlevels(df$age_group)\n\n[1] 4\n\n#呈现age_group和edu的列联表\ntable(df$age_group, df$edu)\n\n             \n              highschool bachelor master\n  (30,35.2]            6        2      4\n  (35.2,40.5]          8        8      6\n  (40.5,45.8]          5        3      2\n  (45.8,51]            1        2      3"
+  },
+  {
+    "objectID": "L2code.html#向量vector",
+    "href": "L2code.html#向量vector",
+    "title": "L2code",
+    "section": "2.1 向量vector",
+    "text": "2.1 向量vector\n\n# 向量\n# scalar\nage &lt;- 5\n\nname &lt;- \"Harry\"\n\n# numeric vector\na &lt;- c(1,2,3,4,5) # c() Combine Values into a Vector\n\na[1:3] #提取向量中的元素[ ]\n\n[1] 1 2 3\n\na[a &gt; 3] #提取大于3的元素\n\n[1] 4 5\n\na &gt; 3 # 返回逻辑值\n\n[1] FALSE FALSE FALSE  TRUE  TRUE\n\n# character vector\nb &lt;- LETTERS[1:10] \nb[5]\n\n[1] \"E\"\n\nb[c(2,4,6)]\n\n[1] \"B\" \"D\" \"F\"\n\nb[1:3]\n\n[1] \"A\" \"B\" \"C\"\n\n#logical vector\nanswer &lt;- c(TRUE,TRUE,TRUE,FALSE,TRUE,FALSE)"
+  },
+  {
+    "objectID": "L2code.html#矩阵matrix",
+    "href": "L2code.html#矩阵matrix",
+    "title": "L2code",
+    "section": "2.2 矩阵matrix",
+    "text": "2.2 矩阵matrix\n\n# matrix()创建矩阵, 默认按列的方向填充\ny1&lt;-matrix(1:20, nrow=5, ncol=4)\ny1[3, ] #第3行\n\n[1]  3  8 13 18\n\ny1[, 1] #第2列\n\n[1] 1 2 3 4 5\n\ny1[1:3, 2:4] #第1-3行的第2-4列\n\n     [,1] [,2] [,3]\n[1,]    6   11   16\n[2,]    7   12   17\n[3,]    8   13   18\n\n# byrow = TRUE 按行方向填充\ny2&lt;-matrix(1:20, nrow=5, ncol=4, byrow = TRUE)\ny2[3,2] #第3行第2列\n\n[1] 10\n\n# 矩阵中可以存放字符串\ncells &lt;- letters[1:10]\n# 定义矩阵的行名、列名\nrnames &lt;- c(\"team1\", \"team2\")\ncnames &lt;- c(\"class1\", \"class2\", \"class3\", \"class4\", \"class5\")\nmymatrix &lt;- matrix(cells, nrow=2, ncol=5, byrow=TRUE,\n                   dimnames=list(rnames, cnames))\nmymatrix[\"team1\", ]\n\nclass1 class2 class3 class4 class5 \n   \"a\"    \"b\"    \"c\"    \"d\"    \"e\" \n\nmymatrix[, \"class1\"]\n\nteam1 team2 \n  \"a\"   \"f\""
+  },
+  {
+    "objectID": "L2code.html#数据框dataframe",
+    "href": "L2code.html#数据框dataframe",
+    "title": "L2code",
+    "section": "2.3 数据框dataframe",
+    "text": "2.3 数据框dataframe\n\n#创建数据框data.frame()\nd &lt;- c(1,2,3,4)\ne &lt;- c(\"red\", \"white\", \"green\", NA)\nf &lt;- c(TRUE,TRUE,TRUE,FALSE)\ndf &lt;- data.frame(id = d,\n                 color = e,\n                 pass = f)\ndf\n\n  id color  pass\n1  1   red  TRUE\n2  2 white  TRUE\n3  3 green  TRUE\n4  4  &lt;NA&gt; FALSE\n\ndf[1:2] #第1-2列\n\n  id color\n1  1   red\n2  2 white\n3  3 green\n4  4  &lt;NA&gt;\n\ndf[c(\"id\",\"pass\")] #df中的向量id和pass\n\n  id  pass\n1  1  TRUE\n2  2  TRUE\n3  3  TRUE\n4  4 FALSE\n\ndf$color\n\n[1] \"red\"   \"white\" \"green\" NA     \n\nView(mtcars) #以表单形式浏览数据框\n\nhead(mtcars) #浏览数据框的前六行\n\n                   mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\nHornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1\nHornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2\nValiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1\n\ntail(mtcars) #浏览数据框的后六行\n\n                mpg cyl  disp  hp drat    wt qsec vs am gear carb\nPorsche 914-2  26.0   4 120.3  91 4.43 2.140 16.7  0  1    5    2\nLotus Europa   30.4   4  95.1 113 3.77 1.513 16.9  1  1    5    2\nFord Pantera L 15.8   8 351.0 264 4.22 3.170 14.5  0  1    5    4\nFerrari Dino   19.7   6 145.0 175 3.62 2.770 15.5  0  1    5    6\nMaserati Bora  15.0   8 301.0 335 3.54 3.570 14.6  0  1    5    8\nVolvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2\n\ndim(mtcars) #查看数据框的行数和列数\n\n[1] 32 11\n\nstr(mtcars) #查看数据框的结构\n\n'data.frame':   32 obs. of  11 variables:\n $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...\n $ cyl : num  6 6 4 6 8 6 8 4 4 6 ...\n $ disp: num  160 160 108 258 360 ...\n $ hp  : num  110 110 93 110 175 105 245 62 95 123 ...\n $ drat: num  3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 ...\n $ wt  : num  2.62 2.88 2.32 3.21 3.44 ...\n $ qsec: num  16.5 17 18.6 19.4 17 ...\n $ vs  : num  0 0 1 1 0 1 0 1 1 1 ...\n $ am  : num  1 1 1 0 0 0 0 0 0 0 ...\n $ gear: num  4 4 4 3 3 3 3 4 4 4 ...\n $ carb: num  4 4 1 1 2 1 4 2 2 4 ..."
+  },
+  {
+    "objectID": "L2code.html#列表list",
+    "href": "L2code.html#列表list",
+    "title": "L2code",
+    "section": "2.4 列表list",
+    "text": "2.4 列表list\n\n# 创建列表list\nmylist &lt;- list(myvector = y1, \n               mymatrix = cells, \n               mydata = df)\n\nmylist[[1]][2,3] #第1个对象中的第2行第3列\n\n[1] 12\n\nmylist[[3]][, 2] #第3个对象中的第2列\n\n[1] \"red\"   \"white\" \"green\" NA     \n\n#hist()函数的运行结果被保存为list\nx &lt;- runif(100)\np &lt;- hist(x)\n\n\n\n\n\n\n\np\n\n$breaks\n [1] 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0\n\n$counts\n [1] 11 12 11  6  9 12  6  9 13 11\n\n$density\n [1] 1.1 1.2 1.1 0.6 0.9 1.2 0.6 0.9 1.3 1.1\n\n$mids\n [1] 0.05 0.15 0.25 0.35 0.45 0.55 0.65 0.75 0.85 0.95\n\n$xname\n[1] \"x\"\n\n$equidist\n[1] TRUE\n\nattr(,\"class\")\n[1] \"histogram\""
   }
 ]
