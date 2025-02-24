@@ -4,10 +4,9 @@ title: "第4讲"
 
 # 第4讲 ggplot2 
 
-<img src="img/teacher.png"  style="width: 24px; height: 24px;margin-right: 10px">[4.1 ggplot2 讲义](https://lizongzhang.github.io/stat/L4.html){target="_blank"} 
+<img src="img/teacher.png"  style="width: 24px; height: 24px;margin-right: 10px">[ggplot2 讲义](https://lizongzhang.github.io/stat/L4.html){target="_blank"} 
 
-<img src="img/teacher.png"  style="width: 24px; height: 24px;margin-right: 10px">[4.2 ggplot2
-        Script](https://lizongzhang.github.io/stat/ggplot2intro.html){target="_blank"}
+<img src="img/code.png"  style="width: 24px; height: 24px;margin-right: 10px">[ggplot2 Script](https://lizongzhang.github.io/stat/ggplot2intro.html){target="_blank"}
 
 ## 教学视频
 

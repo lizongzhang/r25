@@ -160,6 +160,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#第3讲-r基础图形工具" id="toc-第3讲-r基础图形工具" class="nav-link active" data-scroll-target="#第3讲-r基础图形工具">第3讲 R基础图形工具</a>
   <ul class="collapse">
   <li><a href="#教学视频" id="toc-教学视频" class="nav-link" data-scroll-target="#教学视频">教学视频</a></li>
+  <li><a href="#课后习题" id="toc-课后习题" class="nav-link" data-scroll-target="#课后习题">课后习题</a></li>
+  <li><a href="#随机数函数和直方图" id="toc-随机数函数和直方图" class="nav-link" data-scroll-target="#随机数函数和直方图">1 随机数函数和直方图</a></li>
+  <li><a href="#mtcars的图表展示" id="toc-mtcars的图表展示" class="nav-link" data-scroll-target="#mtcars的图表展示">2 mtcars的图表展示</a></li>
   <li><a href="#习题讲评" id="toc-习题讲评" class="nav-link" data-scroll-target="#习题讲评">习题讲评</a></li>
   <li><a href="#拓展资源" id="toc-拓展资源" class="nav-link" data-scroll-target="#拓展资源">拓展资源</a></li>
   </ul></li>
@@ -199,12 +202,52 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="img/video.png" style="width: 24px; height: 24px;margin-right: 10px"><a href="https://www.bilibili.com/video/BV1mV4y177EK/" target="_blank">R 条形图 barplot函数</a></p>
 <p><img src="img/video.png" style="width: 24px; height: 24px;margin-right: 10px"><a href="https://www.bilibili.com/video/" target="_blank">散点图的绘制——R中的plot函数</a></p>
 </section>
+<section id="课后习题" class="level2">
+<h2 class="anchored" data-anchor-id="课后习题">课后习题</h2>
+</section>
+<section id="随机数函数和直方图" class="level2">
+<h2 class="anchored" data-anchor-id="随机数函数和直方图">1 随机数函数和直方图</h2>
+<p>绘制下列向量（序列）的直方图,为直方图填充你喜爱的颜色。</p>
+<ol type="1">
+<li><p>生成一个服从均匀分布的向量（序列），该向量包含1000个值。</p></li>
+<li><p>生成一个服从标准正态分布的向量（序列），该向量包含1000个值。</p></li>
+<li><p>生成一个服从均值为80，标准差为5的正态分布的向量（序列），该向量包含1000个值。</p></li>
+<li><p>生成一个服从自由度为5的卡方分布的向量（序列），该向量包含1000个值 。</p></li>
+<li><p>生成一个服从自由度为5的t分布的向量（序列），该向量包含1000个值。</p></li>
+<li><p>生成一个服从F(5,10)分布的向量（序列），该向量包含1000个值。</p></li>
+</ol>
+<p>提示：随机数函数</p>
+<ul>
+<li><p>正态分布 rnorm(n, mean=0, sd=1)</p></li>
+<li><p>均匀分布 runif(n, min=0, max=100)</p></li>
+<li><p>T分布 rt()</p></li>
+<li><p>卡方分布 rchisq()</p></li>
+<li><p>F分布 rf( )</p></li>
+</ul>
+</section>
+<section id="mtcars的图表展示" class="level2">
+<h2 class="anchored" data-anchor-id="mtcars的图表展示">2 mtcars的图表展示</h2>
+<p>数据集：mtcars</p>
+<ol type="1">
+<li><p>绘制qsec的直方图（纵轴代表频数），为直方图设置标题，为横轴纵轴设置合理的刻度范围，将组距设置为2， 为直方图设置你喜爱的颜色。</p></li>
+<li><p>绘制qsec的频率直方图（纵轴代表频率），为横轴纵轴设置合理的刻度范围，在该图中添加一条概率密度曲线，为概率密度曲线设置你喜爱的颜色。</p></li>
+<li><p>绘制wt的直方图（纵轴代表频数），为横轴纵轴设置合理的刻度范围，设置图形标题，为直方图设置你喜爱的颜色。</p></li>
+<li><p>绘制vs的条形图，纵轴代表频数。</p></li>
+<li><p>绘制am的条形图，条形水平放置。</p></li>
+<li><p>绘制am的饼图。</p></li>
+<li><p>绘制wt的箱线图。</p></li>
+<li><p>将汽车分为手动挡和自动挡两组，绘制这两个组别wt的箱线图，并设置你喜爱的颜色。</p></li>
+<li><p>将汽车分为手动挡和自动挡两组，绘制这两个组别qsec的箱线图，并设置你喜爱的颜色。</p></li>
+</ol>
+</section>
 <section id="习题讲评" class="level2">
 <h2 class="anchored" data-anchor-id="习题讲评">习题讲评</h2>
 <p><img src="img/code.png" style="width: 24px; height: 24px;margin-right: 10px"><a href="https://lizongzhang.github.io/r25/L3solution.html" target="_blank">第3讲习题代码</a></p>
 </section>
 <section id="拓展资源" class="level2">
 <h2 class="anchored" data-anchor-id="拓展资源">拓展资源</h2>
+<p><img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">color codes <a href="https://htmlcolorcodes.com" class="uri">https://htmlcolorcodes.com</a></p>
+<p><img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">Colors in R <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf" class="uri">http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf</a></p>
 
 
 </section>
