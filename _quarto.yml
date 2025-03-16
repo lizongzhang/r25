@@ -1,0 +1,41 @@
+project:
+  type: website
+  output-dir: docs
+  
+website:
+  title: "R语言与统计应用25春"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - L1.qmd
+      - L2.qmd
+      - L3.qmd
+      - L4.qmd
+      - L5.qmd
+      - L6.qmd      
+      - L7.qmd
+      - L8.qmd
+      - L9.qmd      
+      - L10.qmd
+      - L11.qmd
+    tools:
+      - icon: envelope
+        href: lizongzhang9@qq.com
+  page-footer:
+    right: "Statistics: turning data into insights."
+    left: "&copy; Copyright 2025, Li Zongzhang"
+format:
+  html:
+    theme: [yeti, theme_light.scss]
+    toc: true
+    number_sections: true
+header-includes:
+  - |
+    <script>
+      document.querySelectorAll('a').forEach(function(link) {
+        link.setAttribute('target', '_blank');
+      });
+    </script>
+editor: source
+

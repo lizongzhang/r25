@@ -1,0 +1,145 @@
+---
+title: "L5"
+format:
+  html:
+    toc: true
+    toc_depth: 4
+    toc_float:
+      collapsed: true
+      smooth_scroll: true
+      toc_position: right
+    number_sections: true
+---
+
+# 第5讲 tidyverse
+
+"Tidy datasets are all alike, but every messy dataset is messy in its own way." --- Hadley Wickham
+
+# 什么是tidy data？
+
+```{r}
+#| echo: true
+library(tidyverse)
+```
+
+```{r}
+
+table1
+
+table2
+
+table3
+```
+
+tidydata的特点：
+
+-   每个变量是一列；每列是一个变量。
+
+-   每个观察结果是一行；每行是一个观察结果。
+
+-   每个值是一个单元格；每个单元格是一个单一值。
+
+![](https://r4ds.hadley.nz/images/tidy-1.png) 为什么要确保你的数据整洁？
+
+-   如果你有一个一致的数据结构，学习与之配合的工具就更容易，因为它们具有底层的统一性。
+
+-   将变量放在列中, 发挥R的向量化特性，大多数内置的R函数都是与向量一起工作的。
+
+# 如何查看数据？
+
+```{r}
+#install.packages("nycflights13")
+library(nycflights13)
+data(flights)
+
+flights #查看数据
+
+View(flights) #查看数据
+
+glimpse(flights) #查看数据结构
+```
+
+```{r}
+```
+
+int 是整数的简写
+
+dbl 是双精度浮点数（也称为实数）的简写
+
+chr 代表字符（也称为字符串）
+
+dttm 用于日期时间
+
+# dplyr函数
+
+## dplyr函数的共性
+
+第1项参数是data frame.
+
+第2项参数描述动作。
+
+输出结果是一个新的data frame.
+
+## dplyr函数的分类
+
+-   列的管理 Columns:
+    -   `select()` changes whether or not a column is included.
+    -   `rename()` changes the name of columns.
+    -   `mutate()` changes the values of columns and creates new columns.
+    -   `relocate()` changes the order of the columns.
+-   行的管理 Rows:
+    -   `filter()` chooses rows based on column values.
+    -   `slice()` chooses rows based on location.
+    -   `arrange()` changes the order of the rows.
+-   行组的管理Groups of rows:
+    -   `summarise()` collapses a group into a single row.
+    -   `count()`
+    -   `top_n()`
+
+### Rows
+
+#### filter()
+
+```{r}
+flights %>%  
+  filter(dep_delay > 120) #筛选出dep_delay大于120的行
+```
+
+
+\>=（大于或等于）
+
+\<（小于）
+
+\<=（小于或等于）
+
+\==（等于）
+
+\!=（不等于）
+
+\& 或 or, 来表示"和"（同时检查两个条件）
+
+\| 来表示"或"（检查任一条件）
+
+```{r}
+flights %>% 
+  filter(month == 1 & day == 1) #筛选出1月1日的航班
+
+flights %>%
+  filter(month == 1 | month == 2) #筛选出1月或2月的航班
+
+flights %>%
+  filter(month %in% c(1, 2)) #筛选出1月或2月的航班
+
+```
+
+**注意：当你运行 filter() 时，dplyr 执行过滤操作，创建一个新的数据框，然后打印它。它不会修改现有的 flights 数据集，因为 dplyr 函数永远不会修改它们的输入。要保存结果，你需要使用赋值操作符，<-**
+
+```{r}
+#筛选出1月1日的航班,并保存到flights_jan1
+flights_jan1 <- flights %>% 
+  filter(month == 1 & day == 1) 
+```
+
+#### arange()
+
+

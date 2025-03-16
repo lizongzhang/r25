@@ -1,0 +1,197 @@
+---
+title: "第5讲"
+---
+# 第5讲 数据管理
+
+<img src="img/teacher.png"  style="width: 24px; height: 24px;margin-right: 10px">[代码](https://lizongzhang.github.io/r24/script5.html){target="_blank"}
+
+## 教学视频
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[函数select()和mutate()](https://www.bilibili.com/video/BV1XZ4y127rc/){target="_blank"}
+
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[函数if_else()对变量值进行条件转换](https://www.bilibili.com/video/BV1D94y1d7wT/){target="_blank"}
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[函数filter()筛选个案](https://www.bilibili.com/video/BV1rY4y1e7oY/){target="_blank"}
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[如何删除含有缺失值的个案？](https://www.bilibili.com/video/BV1pG41177Bi/){target="_blank"}
+
+## 本章习题
+
+<details>
+  <summary>第1题</summary>
+
+第1题：数据 ggplot2::mpg
+
+提示：加载包tidyverse，运行data(mpg), 即可调用数据框mpg。
+
+1.1  用select()函数从mpg提取5个变量⽣成新的数据框。
+
+1.2  用mutate()函数在数据框中追加新的变量，将油耗变量cty和hwy（miles
+    per gallon）转换成转公里/升(kilometers per liter)的油耗指标。
+
+1.3  任选mpg中的某个变量，用if_else()函数对该变量的数值进⾏条件转换。
+
+1.4  设置三个筛选条件，用filter()函数从mpg筛选出满足条件的个案, 保存到新的数据框。
+
+提交R script代码。
+</details>
+
+<details>
+  <summary>第2题</summary>
+
+习题2 :数据nycflights13::flights
+
+提示：加载包nycflights13，运行data(flights), 即可调用数据框flights。
+
+2.1 根据distance(单位：英里)的数值，将航班分为短途、中途和长途三个类别。创建新变量distance_group,其值为"short", "medium", "long"。统计每个类别的航班数量。
+
+- 短途飞行（Short-haul flight）：飞行距离少于500英里的航班。
+
+- 中途飞行（Medium-haul flight）：飞行距离在500到1,550英里之间的航班。
+
+- 长途飞行（Long-haul flight）：飞行距离超过1,550英里的航班
+
+2.2 如果你想尽可能避免延误，你应该选择哪个时间段起飞的航班？
+
+2.3 哪个航空公司(carrier)的平均延误时间最长？
+</details>
+
+
+
+## 习题答案
+
+<details>
+  <summary>第1题</summary>
+
+第1题
+
+```{r}
+#| echo: true
+#| messsage: false
+library(tidyverse)
+library(gt)
+
+```
+
+
+1.1  用select()函数从mpg提取5个变量⽣成新的数据框。
+
+```{r}
+#library(gt)
+data(mpg)
+
+mpg %>% 
+  select(manufacturer:cyl) %>% 
+  head() #查看前6行
+
+mpg %>% 
+  select(1:5) %>% 
+  head()
+
+mpg %>% 
+  select(4,5,7:9) %>% 
+  head()
+
+mpg %>% 
+  select(year,cyl,drv:hwy) %>% 
+  head()
+
+```
+
+1.2 用mutate()函数在数据框中追加新的变量，将油耗变量cty和hwy（miles
+    per gallon）转换成转公里/升(kilometers per liter)的油耗指标。(1 miles per gallon = 0.425 kilometers per liter)
+
+```{r}
+mpgnew <- mpg %>% mutate(cty.kpl = 0.425*cty, 
+               hwy.kpl = 0.425*hwy)
+
+head(mpgnew) %>% gt()
+
+mpg$hwy.kpl <- 0.425*mpg$hwy
+mpg$cty.kpl <- 0.425*mpg$cty
+
+head(mpg) %>% gt()
+
+```
+
+
+1.3  任选mpg中的某个变量，用if_else()函数对该变量的数值进⾏条件转换。
+
+```{r}
+mpgnew <- mpg %>% 
+  mutate(transmission = 
+           if_else(substring(trans, 1,4) == "auto", 
+                   "auto","manual"))
+
+head(mpgnew) %>% gt()
+
+#二值转换 if_else
+
+mpg$transmission <- if_else(
+  substring(mpg$trans, 1,4) == "auto", 
+  "auto","manual") 
+
+#多值转换 case_when
+mpg$drive <- case_when(
+  mpg$drv == "f" ~ "front-wheel",
+  mpg$drv == "r" ~ "rear-wheel",
+  mpg$drv == "4" ~ "four-wheel")
+
+
+head(mpg) %>% gt()
+```
+
+1.4  设置三个筛选条件，用filter()函数从mpg筛选个案⽣成新的数据框。
+
+```{r}
+
+# the & operator is used to combine two conditions, where both conditions must be true for a row to be included in the filtered data frame.
+
+mpg %>% 
+  filter(class == "suv" & 
+           cyl == 8 & 
+          year == 2008) %>%
+  head() %>%
+  gt()
+
+
+mpg %>% 
+  filter(substr(trans, 1, 4) == "auto" & 
+        class %in% c("compact", "subcompact") &
+          !fl %in% c("c" ,"d" ,"e")) %>%
+  head() %>%
+  gt()
+
+
+# the | operator combines the two conditions, where only one of the conditions needs to be true for a row to be included in the filtered data frame.
+
+mpg %>% 
+  filter(class == "suv" | 
+           cyl == 8 |
+          year == 2008)  %>% 
+  head() %>% 
+  gt()
+
+```
+
+</details>
+
+
+## 拓展资源 
+
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">R for Data Science 2nd edition <https://r4ds.hadley.nz/data-tidy>
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">[R代码风格](https://lizongzhang.github.io/r24/style.html){target="_blank"}
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[R如何快速预览变量分布？summarytools::dfSummary()](https://www.bilibili.com/video/BV1yj411t71t/){target="_blank"}
+
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[R代码风格：如何写出美观易读的代码?](https://www.bilibili.com/video/BV1KM4m197E5/){target="_blank"}
+
+
+
+
+
+

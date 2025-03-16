@@ -1,0 +1,211 @@
+---
+title: "L4作业讲评"
+output: html_document
+number-sections: true
+---
+
+```{r}
+#| echo: false
+#| message: FALSE
+
+# 指定图形的中文字体
+par(family  = 'STKaiti')
+#install.packages("showtext")
+library(showtext)
+showtext_auto()
+```
+
+
+# 条形图按频数降序排列
+
+![](img/L4stu1.png){.lightbox}
+
+
+
+```{r}
+library(tidyverse)
+
+mpg %>% 
+  ggplot(aes(fct_infreq(class))) +
+  geom_bar(fill = "aquamarine") +
+  geom_text(stat = "count", 
+            aes(label = after_stat(count)), 
+            vjust = -0.5,
+            size = 5) +
+  labs(title = "Barplot of Class", x = "Class", y = "Count") +
+  scale_y_continuous(limits = c(0, 70), 
+                     breaks = seq(0, 70, 10)) +
+  guides(x = guide_axis(angle = 45)) +
+  theme_bw() +
+  theme(
+     axis.text.x = element_text(size = 12),  # 设置 x 轴刻度字体大小为 12
+     axis.text.y = element_text(size = 12),   # 设置 y 轴刻度字体大小为 12
+     axis.title = element_text(size = 14),    # 设置坐标轴标题字体大小为 14
+     plot.title = element_text(size = 16)     # 设置图表标题字体大小为 16
+  )
+
+```
+
+
+# 百分比堆栈条形图——展示两个定型变量的分布结构
+
+![](img/L4stu2.png){.lightbox}
+
+```{r}
+#  Percentage Stacked Barplot
+# 计算每个class中不同drv的比重百分比
+mpg_percent <- mpg %>%
+                  group_by(class) %>%
+                  count(drv) %>%
+                  mutate(percent = round(n/sum(n), 2)) %>%
+                  ungroup() 
+mpg_percent
+
+ggplot(mpg_percent, 
+       aes(class, n, fill = drv)) +
+  geom_bar(stat = "identity", 
+           position = "fill") +  
+  geom_text(aes(label = scales::percent(percent, accuracy = 1), 
+                y = percent), 
+            position = position_fill(vjust = 0.5), 
+            size = 5,
+            fontface = "bold",
+            color = "white") +
+  scale_fill_manual(values = c("cyan4", "darkorchid","deepskyblue"),
+                    label = c("Four-wheel",
+                              "Front-wheel",
+                              "Rear-Wheel"),
+                    name = "Drive Type") +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1))+
+  labs(title = "Percentage Stacked Barplot by Class and Drive", 
+       x = "Class", y = "Percentage") +
+  theme(legend.position = "bottom") +
+  theme_bw() +
+  guides(x = guide_axis(angle = 45)) +
+  theme(
+     axis.text.x = element_text(size = 12),  # 设置 x 轴刻度字体大小为 12
+     axis.text.y = element_text(size = 12),   # 设置 y 轴刻度字体大小为 12
+     axis.title = element_text(size = 14),    # 设置坐标轴标题字体大小为 14
+     plot.title = element_text(size = 16)     # 设置图表标题字体大小为 16
+  )
+```
+
+
+
+
+# 直方图频数标注位置不当
+
+![](img/L4stu4.png){.lightbox}
+
+```{r}
+
+summary(mpg$hwy)
+
+mpg %>% 
+  ggplot(aes(hwy))+
+  geom_histogram(fill = "darkorchid1",
+                 color = "black",
+                 binwidth = 2)+
+  stat_bin(aes(label = ifelse(after_stat(count) == 0,
+                              "",after_stat(count))), 
+           binwidth = 2, 
+           geom = "text",
+           vjust = -0.5)+
+  scale_y_continuous(limits = c(0,50), 
+                     breaks = seq(0,50,10))+
+  scale_x_continuous(breaks = seq(12,44,2))+
+  labs(title = "Histogram of Highway Miles per Gallon",
+       x = "Highway Miles per Gallon") +
+  theme_bw() +
+  guides(x = guide_axis(angle = 45)) +
+  theme(
+     axis.text.x = element_text(size = 12),  # 设置 x 轴刻度字体大小为 12
+     axis.text.y = element_text(size = 12),   # 设置 y 轴刻度字体大小为 12
+     axis.title = element_text(size = 14),    # 设置坐标轴标题字体大小为 14
+     plot.title = element_text(size = 16)     # 设置图表标题字体大小为 16
+  )
+```
+
+
+# 箱线图——按定量变量的中位数降序排列
+
+![](img/L4stu3.png){.lightbox}
+```{r}
+mpg %>% 
+  ggplot(aes(fct_reorder(drv, hwy), hwy, fill = drv)) +
+  geom_boxplot() +
+  scale_fill_manual(values = c("cyan4", "darkorchid","deepskyblue")) +
+  scale_x_discrete(labels = c("Four-wheel",
+                            "Front-wheel",
+                            "Rear-wheel")) +
+  labs(title = "Boxplot of Highway Miles per Gallon by Drive Type", 
+       x = "Drive Type", y = "Miles per Gallon") +
+  theme_bw() +
+  theme(legend.position = "none",
+     axis.text.x = element_text(size = 12),  # 设置 x 轴刻度字体大小为 12
+     axis.text.y = element_text(size = 12),   # 设置 y 轴刻度字体大小为 12
+     axis.title = element_text(size = 14),    # 设置坐标轴标题字体大小为 14
+     plot.title = element_text(size = 16)     # 设置图表标题字体大小为 16
+  ) 
+  
+```
+
+
+
+# 箱线图——按定量变量的中位数降序排列
+
+![](img/L4stu5.png){.lightbox}
+
+```{r}
+
+library(RColorBrewer)
+#查看调色板
+display.brewer.all()
+
+mpg %>% 
+  ggplot(aes(fct_reorder(class, hwy), hwy, fill = class)) +
+  geom_boxplot() +
+  scale_fill_brewer(palette = "Paired")+
+  labs(title = "Boxplot of Highway Miles per Gallon by Class", 
+       x = "Class", y = "Highway Miles per Gallon") +
+  theme_bw() +
+  guides(x = guide_axis(angle = 45)) +
+  theme(legend.position = "none",
+     axis.text.x = element_text(size = 12),  # 设置 x 轴刻度字体大小为 12
+     axis.text.y = element_text(size = 12),   # 设置 y 轴刻度字体大小为 12
+     axis.title = element_text(size = 14),    # 设置坐标轴标题字体大小为 14
+     plot.title = element_text(size = 16)     # 设置图表标题字体大小为 16
+  )
+```
+
+
+# 图形比例不适当
+
+![](img/L4stu6.png){.lightbox}
+```{r}
+mpg %>% 
+  ggplot(aes(cty, fill = factor(year), # 设置分组变量，factor(year) 将 year数值变量转换为因子变量
+             alpha = 0.5))+
+  geom_histogram(binwidth = 2, col = 1)+
+  facet_wrap(~ drv,  # 设置切面变量
+             labeller = labeller(drv = c("4" = "four-wheel",
+                                         "f" = "front-wheel",
+                                         "r" = "rear-wheel")), # 设置切面标签
+                                 ncol = 1)+
+  theme_bw()+
+  scale_fill_manual(values = c("cyan", "darkorchid"))+
+  labs(title = "Histogram of City Miles per Gallon",
+       subtitle = "Grouped by the Type of Drive Engine",
+       x = "City Miles per Gallon",
+       fill = "Year")
+
+```
+
+
+
+
+# 与答案完全一致
+
+![](img/L4stu7.png){.lightbox}
+
+

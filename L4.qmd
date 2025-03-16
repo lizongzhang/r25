@@ -1,0 +1,87 @@
+---
+title: "第4讲"
+---
+
+# 第4讲 ggplot2 
+
+<img src="img/teacher.png"  style="width: 24px; height: 24px;margin-right: 10px">[ggplot2 讲义](https://lizongzhang.github.io/stat/L4.html){target="_blank"} 
+
+<img src="img/code.png"  style="width: 24px; height: 24px;margin-right: 10px">[ggplot2 Script](https://lizongzhang.github.io/stat/ggplot2intro.html){target="_blank"}
+
+## 教学视频
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[ggplot2绘制直方图](https://www.bilibili.com/video/BV1wV4y1K7eX/){target="_blank"} 
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[ggplot2如何在直方图上标注频数？](https://www.bilibili.com/video/BV1y24y1778a/){target="_blank"} 
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[ggplot2绘制条形图](https://www.bilibili.com/video/BV16e4y1Q7Qw/){target="_blank"} 
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[ggplot2如何在条形图上标注各组频数？](https://www.bilibili.com/video/BV1Ng4y1j7cE/){target="_blank"} 
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[ggplot2绘制帕累托图](https://www.bilibili.com/video/BV1ia411U74q/?){target="_blank"} 
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[ggplot2绘制箱线图](https://www.bilibili.com/video/BV1vW4y127dt/){target="_blank"} 
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[ggplot2绘制散点图](https://www.bilibili.com/video/BV1Ca411K78j/){target="_blank"} 
+
+## 习题答案 
+
+<img src="img/teacher.png"  style="width: 24px; height: 24px;margin-right: 10px">[第4讲习题答案代码](https://lizongzhang.github.io/stat/4solution.html){target="_blank"} 
+
+## 作业点评 
+
+<img src="img/teacher.png"  style="width: 24px; height: 24px;margin-right: 10px">[第4讲作业讲评](https://lizongzhang.github.io/r25/L4comment.html){target="_blank"}
+
+
+## 课堂练习
+
+<details>
+  <summary>数据：diamonds{ggplot2}</summary>
+
+数据：diamonds{ggplot2}
+
+查看diamonds的帮助文件，了解数据集的变量含义，完成下列任务，美化图形。
+
+1. 绘制cut的条形图，将频数按降序排列。
+
+2. 绘制分组箱线图，比较不同 cut 的 price 的分布。
+
+3. 绘制分组直方图，比较不同 cut 的 carat 的分布。
+
+4. 使用facet_wrap 或 facet_grid 绘制 carat 和 price 的关系图，按cut分面。
+
+5. 绘制diamonds 数据集中carat 和 price的散点图，散点的颜色用cut映射，并添加平滑曲线。
+
+<details>
+
+
+
+## 拓展资源
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[ggplot2：为何你的颜色设置不起作用?](https://www.bilibili.com/video/BV1Y94y1E7m1/){target="_blank"} 
+
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[ggplot2：常见报错与解决方案](https://www.bilibili.com/video/BV1cc41167LA/){target="_blank"} 
+
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[如何快速找到自己喜欢的颜色？colourpicker](https://www.bilibili.com/video/BV1Na4y197SE/){target="_blank"} 
+
+<img src="img/video.png"  style="width: 24px; height: 24px;margin-right: 10px">[不写代码也能绘制ggplot图形的R插件 ggplot2 builder](https://www.bilibili.com/video/BV1Yj41147bB/){target="_blank"} 
+
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">ggplot2 extensions - gallery <https://exts.ggplot2.tidyverse.org/gallery/>
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">color codes <https://htmlcolorcodes.com>
+    
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">Colors in R <http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf>
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">Wickham, Hadley. ggplot2: elegant graphics for data
+            analysis. springer, 2016. <https://ggplot2-book.org/>
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">Wickham, Hadley, Garrett Grolemund. R for Data Science
+            <https://r4ds.had.co.nz/>
+            
+            
+
+        
+        

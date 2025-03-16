@@ -317,12 +317,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df) <span class="co">#显示df的前六行</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id age        edu    sex
-1  1  44 highschool   male
-2  2  32 highschool   male
-3  3  35 highschool female
-4  4  44 highschool female
-5  5  42 highschool   male
-6  6  38 highschool female</code></pre>
+1  1  26 highschool   male
+2  2  39 highschool female
+3  3  41 highschool female
+4  4  48 highschool female
+5  5  43 highschool female
+6  6  41 highschool female</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>edu <span class="co">#edu是字符串，有双引号</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -400,12 +400,12 @@ Levels: bachelor highschool master</code></pre>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#呈现age_group和edu的列联表</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>age_group, df<span class="sc">$</span>edu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>             
-              highschool bachelor master
-  (30,35.2]            6        2      4
-  (35.2,40.5]          8        8      6
-  (40.5,45.8]          5        3      2
-  (45.8,51]            1        2      3</code></pre>
+<pre><code>           
+            highschool bachelor master
+  (26,31.5]          4        0      2
+  (31.5,37]          4        3      3
+  (37,42.5]          7        7      6
+  (42.5,48]          5        5      4</code></pre>
 </div>
 </div>
 </section>
@@ -612,10 +612,10 @@ Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2</code></pre>
  [1] 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0
 
 $counts
- [1] 11 12 11  6  9 12  6  9 13 11
+ [1] 15 15 11 12 10  4 13  6  7  7
 
 $density
- [1] 1.1 1.2 1.1 0.6 0.9 1.2 0.6 0.9 1.3 1.1
+ [1] 1.5 1.5 1.1 1.2 1.0 0.4 1.3 0.6 0.7 0.7
 
 $mids
  [1] 0.05 0.15 0.25 0.35 0.45 0.55 0.65 0.75 0.85 0.95

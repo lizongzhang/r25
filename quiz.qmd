@@ -1,0 +1,59 @@
+---
+title: "quiz"
+---
+
+第1题: 将满足下列条件的航班筛选出来，保存为一个新的数据框christmas_jfk, 该数据框中一共有多少个航班？
+
+1.  航班出发日期为2013年12月24日.
+
+2.  出发地(origin)机场是"JFK".
+
+-   John F. Kennedy International Airport, JFK
+
+-   LaGuardia Airport, LGA
+
+-   Newark Liberty International Airport, EWR
+
+3.  航空公司(carrier)是"AA",或者"UA", 或者"US".
+
+-   AA, American Airlines.
+
+-   UA, United Airlines
+
+-   US, US Airways
+
+4.  将到达延误时长(arr_delay)中有缺失值的行剔除
+
+第2题: 对数据框christmas_jfk, 按照到达延误时长(arr_delay)降序排列航班
+
+第3题: 绘制数据框christmas_jfk中出发时间(dep_time)和到达延误时长(arr_delay)的散点图，散点的颜色用航空公司(carrier)来映射, 散点的大小用飞行距离来映射。
+
+第4题：将出发地(origin)是"JFK"机场的航班筛选出来, 创建数据框jfk_flights, 在该数据框中追加如下变量：
+
+1.  追加新变量distance_group。根据distance(单位：英里)的数值，将航班分为短途、中途和长途三类。 distance_group值为"short", "medium", "long"。distance_group与distance的对应关系如下：
+
+-   短途飞行（Short-haul flight）：飞行距离少于500英里的航班。
+
+-   中途飞行（Medium-haul flight）：飞行距离在500到1,550英里之间的航班。
+
+-   长途飞行（Long-haul flight）：飞行距离超过1,550英里的航班
+
+2.  追加新变量status。若arr_delay的值为缺失值，则status等于cancelled，若arr_delay的值不是缺失值，则status等于normal。
+
+3.  追加新变量month_name，将month的值转换为月份的英文名称，例如1转换为January，2转换为February，以此类推。
+
+第5题：绘制出第1题中得到的数据框jfk_flights中航班数量的条形图，横坐标为月份的英文名称，纵坐标为航班数量。
+
+第6题：绘制出第1题中得到的数据框jfk_flights中每个月份的取消/正常航班数量的条形图，横坐标为月份的英文名称，纵坐标为航班数量。
+
+第7题：如果你想尽可能避免延误，你应该选择哪个时间段起飞的航班？
+
+第8题：哪三家航空公司(carrier)的平均延误时间(arr_delay)最长？
+
+第9题：哪个月份的平均延误时间(arr_delay)最长？
+
+第10题：将延误时间(arr_delay)超过15分钟的定义为延误航班。 计算各个月份的延误航班的比例，并按比例降序排列。
+
+第11题：将延误时间(arr_delay)超过15分钟的定义为延误航班。 计算各个航空公司(carrier)的延误航班的比例，并按各航空公司航班数量降序排列。
+
+第12题：从JFK机场出发(origin)的航班中，航班数量最多的5家航空公司是哪些？并统计出其航班数量？

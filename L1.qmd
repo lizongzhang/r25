@@ -1,0 +1,64 @@
+---
+title: "第1讲"
+---
+
+# 第1讲 R和R Studio简介
+
+<img src="img/teacher.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[讲义](https://lizongzhang.github.io/stat/rintro.html){target="_blank"}
+
+<img src="img/code.png" style="width: 24px; height: 24px;margin-right: 10px">[代码](https://lizongzhang.github.io/r25/L1code.html){target="_blank"}
+
+
+
+## 教学视频
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[R Studio 主界面](https://www.bilibili.com/video/BV1NP4y1A7ow/){target="_blank"}
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[如何安装R扩展包](https://www.bilibili.com/video/BV12u411D7uP/){target="_blank"}
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[R Studio中的Project--如何高效管理数据、代码、图形](https://www.bilibili.com/video/BV1ZB4y127oJ/){target="_blank"}
+
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[那些让你头疼的R代码报错！——拼写错误/误用中文标点/违背命名规则](https://www.bilibili.com/video/BV1Sb4y1N78Y){target="_blank"}
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[R语言代码风格：如何写出易读且美观的代码？](https://www.bilibili.com/video/BV1KM4m197E5){target="_blank"} 
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[R语言如何快速学习R函数帮助文档？](https://www.bilibili.com/video/BV15Ds6etEaZ/){target="_blank"} 
+
+<img src="img/video.png" alt="讲义" style="width: 24px; height: 24px;margin-right: 10px">[RStudio如何导入EXCEL文件](https://www.bilibili.com/video/BV1gi4y1m7pD/){target="_blank"} 
+
+## 课后习题
+
+1 圆的半径为5，计算其周长和面积，结果保留3位小数。
+
+2 将1万元存入银行，年利率为1.35%，计算5年后、10年后的本息和，结果保留2位小数。
+
+3 计算你自己的BMI指数。(BMI=体重(公斤)/身高(米)的平方)
+
+4 给定一个数列 x = c(2, 4, 6, 8)，计算数列中所有元素的总和, 数列中所有元素的平均值, 数列中每个元素的平方。
+
+5 生成一个服从正态分布的数列，自定义其均值和标准差，数列中包含1000个数，绘制其直方图和箱线图，将图形保存为png文件。
+
+6 生成一个服从均匀分布的数列，自定义其最大值和最小值，数列中包含1000个数，绘制其直方图和箱线图，将图形保存为png文件。
+
+7 学习seq()函数，生成一个数列，从1到100，步长为2。为这行代码加上注释。
+
+8 生成一个序列，该序列中存放26个大写英文字母。生成一个序列，该序列中存放字母表中前10个小写字母。
+
+9 创建一个项目，在该项目中存放前述题目的代码文件，和第5-6题中生成的图片。
+
+
+## 习题答案
+
+<img src="img/code.png" style="width: 24px; height: 24px;margin-right: 10px">[习题代码](https://lizongzhang.github.io/r25/L1solution.html){target="_blank"}
+
+
+
+
+## 拓展资源
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">CRAN Task Views <https://cran.r-project.org/web/views/>{target="_blank"}
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">Most Downloaded R Packages <https://www.r-pkg.org/>{target="_blank"}
+
+<img src="img/link.png" style="width: 24px; height: 24px;margin-right: 10px">RStudio Cloud <https://rstudio.cloud/>{target="_blank"}
